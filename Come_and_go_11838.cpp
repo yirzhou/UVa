@@ -23,6 +23,7 @@ void dfs(int u)
     if (dfn[u] == low[u])
         S.clear(), ++cnt;
 }
+
 int main()
 {
     ios::sync_with_stdio(false);
