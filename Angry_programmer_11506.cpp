@@ -39,7 +39,7 @@ void ek()
             q.pop();
             if (u == t)
                 break;
-            for (int v = 1; v <= 2 * M; ++v) {
+            for (int v = s; v <= t; ++v) {
                 if (res[u][v] > 0 && dist[v] == INF)
                     dist[v] = dist[u] + 1, q.push(v), p[v] = u;
             }
@@ -55,37 +55,26 @@ int main()
 {
     while (scanf("%d %d", &M, &W) && M && W) {
         memset(res, 0, sizeof(res));
-        s = 1, t = M;
-        for (int i = 0; i < M - 2; ++i) {
+        int node = M - 2;
+        s = 1, t = M + node;
+        for (int i = 0; i < node; ++i) {
             int id, cost;
             scanf("%d %d", &id, &cost);
-            int vin = id, vout = id + M;
-
+            int vin = id, vout = id + node;
             res[vin][vout] = res[vout][vin] = cost;
         }
 
         for (int i = 0; i < W; ++i) {
             int j, k, d;
             scanf("%d %d %d", &j, &k, &d);
-            int jin = j, jout = j + M, kin = k, kout = k + M;
-            if (j == 1 || j == M) {
-                res[j][k] = d;
-                if (1 < k && k < M) {
-                    res[kout][j] = d;
-                } else {
-                    res[k][j] = d;
-                }
-            } else if (k == 1 || k == M) {
-                res[k][j] = d;
-                if (1 < j && j < M) {
-                    res[jout][k] = d;
-                } else {
-                    res[j][k] = d;
-                }
-            } else {
-                res[jout][kin] = res[kout][jin] = d;
-            }
-            // printf("%d %d %d %d\n", jin, jout, kin, kout);
+
+            if (j == M)
+                j = t;
+            if (k == M)
+                k = t;
+            int u = (j != 1 && j != t ? j + node : j);
+            int v = (k != 1 && k != t ? k + node : k);
+            res[u][k] = res[v][j] = d;
         }
 
         ek();
