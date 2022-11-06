@@ -81,7 +81,6 @@ int main()
 
     while (getline(cin, S)) {
         if (!S.size()) {
-            // TODO: Solve
             solve();
             f = 0;
             p.clear();
