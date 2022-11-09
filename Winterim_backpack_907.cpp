@@ -36,7 +36,6 @@ int dp(int pos, int nights)
 
 int main()
 {
-
     while (scanf("%d %d\n", &N, &K) == 2) {
         G = vi(N + 1, 0);
         for (int i = 0; i < N + 5; ++i)
