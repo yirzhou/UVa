@@ -22,7 +22,6 @@ int main()
     gl(s);
     T = stoi(s);
     while (T--) {
-
         A = vector<vi>(8);
         for (int i = 0; i < 10; ++i) {
             gl(s);
