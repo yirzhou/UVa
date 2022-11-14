@@ -16,21 +16,15 @@ typedef long long ll;
 
 #define MAX_N 100010
 
-int b[MAX_N];
+vi b;
 string t, p;
 
 void preprocess()
 {
     int m = p.size();
-    int i = 0, j = -1;
+    b.assign(m, 0);
     b[0] = -1;
-    while (i < m) {
-        while (j >= 0 && p[i] != p[j])
-            j = b[j];
-        i++;
-        j++;
-        b[i] = j;
-    }
+    int i = 0, j = -1;
 }
 
 bool kmp()
@@ -49,27 +43,11 @@ bool kmp()
     return false;
 }
 
-int solve()
-{
-    int n = p.size();
-    preprocess();
-    for (int k = 1; k < n; ++k) {
-        if (n % k == 0) {
-            int rep = n / k;
-            t.clear();
-            while (rep--)
-                t += p.substr(0, k);
-            if (kmp())
-                return k;
-        }
-    }
-    return n;
-}
-
 int main()
 {
-    while (getline(cin, p) && p[0] != '.') {
-        int k = solve();
-        cout << p.size() / k << endl;
+    while (cin >> p && p != ".") {
+        int length = p.size();
+        preprocess();
+        printf("%d\n", length / (length - b[length - 1]));
     }
 }
