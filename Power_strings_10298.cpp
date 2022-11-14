@@ -24,7 +24,11 @@ void preprocess()
     int m = p.size();
     b.assign(m, 0);
     b[0] = -1;
-    int i = 0, j = -1;
+    for (int i = 1, j = 0; i < m; ++i) {
+        while (j >= 0 && p[i] != p[j])
+            j = j ? b[j - 1] : -1;
+        b[i] = ++j;
+    }
 }
 
 bool kmp()
