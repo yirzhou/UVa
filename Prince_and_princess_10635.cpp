@@ -18,6 +18,21 @@ typedef long long ll;
 vi s1, s2, s3, seq;
 int t, n, p, q;
 
+int lis(vi& nums, int lo, int hi)
+{
+
+    vi seq;
+    for (int i = lo; i <= hi; ++i) {
+        int num = nums[i];
+        int idx = lower_bound(seq.begin(), seq.end(), num) - seq.begin();
+        if (idx == seq.size())
+            seq.pb(num);
+        else
+            seq[idx] = num;
+    }
+    return seq.size();
+}
+
 int main()
 {
     si(t);
@@ -25,7 +40,6 @@ int main()
     s2.assign(MAXN, 0);
     seq.assign(MAXN, 0);
     for (int caseno = 1; caseno <= t; ++caseno) {
-
         siii(n, p, q);
         p++;
         q++;
@@ -42,16 +56,7 @@ int main()
             }
         }
 
-        int len = 1;
-        seq[1] = s3[1];
-        for (int i = 2; i <= p; ++i) {
-            if (s3[i] > seq[len])
-                seq[++len] = s3[i];
-            else {
-                int pos = lower_bound(seq.begin(), seq.begin() + len, s3[i]) - seq.begin();
-                seq[pos] = s3[i];
-            }
-        }
+        int len = lis(s3, 1, p);
 
         printf("Case %d: %d\n", caseno, len);
     }
