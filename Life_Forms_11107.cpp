@@ -122,7 +122,7 @@ bool solve(vi& s, int n, unordered_map<int, int> index, vi& sa, vi& lcp, int p)
     return res;
 }
 
-void print(vi& s, int n, unordered_map<int, int> index, vi& sa, vi& lcp, int p)
+void print(vi& s, int n, unordered_map<int, int>& index, vi& sa, vi& lcp, int p)
 {
     int target = n / 2, cnt = 0;
     memset(flag, 0, sizeof flag);
