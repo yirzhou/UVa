@@ -75,6 +75,6 @@ int main()
             continue;
         }
 
-        cout << a << "," << b << " are closest, " << c << "," << d << " are most distant." << endl;
+        printf("(%d, %d)\n", a, b);
     }
 }
