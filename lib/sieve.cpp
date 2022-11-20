@@ -34,3 +34,16 @@ void sieve(ll upperbound)
         }
     }
 }
+
+bool is_prime(ll n)
+{
+    if (n <= _sieve_size)
+        return bs[n];
+    for (int i = 0; i < primes.size(); ++i) {
+        if (primes[i] * primes[i] > n)
+            return true;
+        if (n % primes[i] == 0)
+            return false;
+    }
+    return true;
+}
