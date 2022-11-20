@@ -40,9 +40,9 @@ void solve(int n)
 
     printf("%d! --", n);
     for (int i = 0; i < 10; ++i) {
-        if (i == 0 || i == 5) {
+        if (i == 0 || i == 5)
             printf("\n   (%d)", i);
-        } else
+        else
             printf("    (%d)", i);
         string s = to_string(cnts[i]);
         for (int i = 0; i < 5 - s.size(); ++i)
