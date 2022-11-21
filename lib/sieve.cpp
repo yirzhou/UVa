@@ -12,6 +12,7 @@ using namespace std;
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
+typedef vector<ll> vll;
 
 #define MAXN 1000010
 
@@ -81,6 +82,7 @@ ll num_diff_PF(ll n)
 
     return ans;
 }
+
 ll EulerPhi(ll N)
 {
     ll idx = 0, pf = primes[idx], ans = N;
