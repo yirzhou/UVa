@@ -5,6 +5,8 @@ using namespace std;
 #define INF 1000000000
 #define ALL(v) v.begin(), v.end()
 #define pb push_back
+#define pii(a, b) printf("%d %d\n", a, b)
+#define piii(a, b, c) printf("%d %d %d\n", a, b, c)
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
@@ -12,6 +14,7 @@ using namespace std;
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
+typedef vector<ll> vll;
 
 #define MAXN 1000010
 
@@ -46,22 +49,6 @@ bool is_prime(ll n)
     return true;
 }
 
-ll num_div(ll N)
-{
-    ll idx = 0, pf = primes[idx], ans = 1;
-    while (pf * pf <= N) {
-        ll power = 0;
-        while (N % pf == 0) {
-            N /= pf, power++;
-        }
-        ans *= (power + 1);
-        pf = primes[++idx];
-    }
-    if (N != 1)
-        ans *= 2;
-    return ans;
-}
-
 ll num_diff_PF(ll n)
 {
     ll PF_idx = 0, PF = primes[PF_idx], ans = 0;
@@ -81,17 +68,14 @@ ll num_diff_PF(ll n)
 
     return ans;
 }
-ll EulerPhi(ll N)
+
+int main()
 {
-    ll idx = 0, pf = primes[idx], ans = N;
-    while (pf * pf <= N) {
-        if (N % pf == 0)
-            ans -= ans / pf;
-        while (N % pf == 0)
-            N /= pf;
-        pf = primes[++idx];
+
+    ll N;
+    sieve(MAXN);
+    while (cin >> N && N) {
+        ll res = num_diff_PF(N);
+        printf("%lld : %lld\n", N, res);
     }
-    if (N != 1)
-        ans -= ans / N;
-    return ans;
 }
