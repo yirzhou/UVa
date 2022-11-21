@@ -16,16 +16,16 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef vector<ll> vll;
 
-float solve(float NCOWS, float NCARS, float NSHOW)
+double solve(double NCOWS, double NCARS, double NSHOW)
 {
     return NCOWS / (NCOWS + NCARS) * NCARS / (NCARS + NCOWS - NSHOW - 1) + NCARS / (NCARS + NCOWS) * (NCARS - 1) / (NCARS + NCOWS - NSHOW - 1);
 }
 
 int main()
 {
-    int NCOWS, NCARS, NSHOW;
+    double NCOWS, NCARS, NSHOW;
     while (cin >> NCOWS >> NCARS >> NSHOW) {
-        float res = solve(NCOWS, NCARS, NSHOW);
+        double res = solve(NCOWS, NCARS, NSHOW);
         printf("%.5f\n", res);
     }
 }
