@@ -16,12 +16,16 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef vector<ll> vll;
 
-ll gcd(ll a, ll b)
+float solve(float NCOWS, float NCARS, float NSHOW)
 {
-    return b == 0 ? a : gcd(b, a % b);
+    return NCOWS / (NCOWS + NCARS) * NCARS / (NCARS + NCOWS - NSHOW - 1) + NCARS / (NCARS + NCOWS) * (NCARS - 1) / (NCARS + NCOWS - NSHOW - 1);
 }
 
-ll lcm(ll a, ll b)
+int main()
 {
-    return a * (b / gcd(a, b));
+    int NCOWS, NCARS, NSHOW;
+    while (cin >> NCOWS >> NCARS >> NSHOW) {
+        float res = solve(NCOWS, NCARS, NSHOW);
+        printf("%.5f\n", res);
+    }
 }
