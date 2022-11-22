@@ -32,7 +32,7 @@ double dp(int N, int W)
     if (memo[N][W] != -1)
         return memo[N][W];
     if (N - W - 1 == 0)
-        return memo[N][W] = dp(N - 1, W) - pp[W + 1];
+        return memo[N][W] = 1.0 - pp[N];
     return memo[N][W] = dp(N - 1, W) - dp(N - W - 2, W) * (1.0 - pp[1]) * pp[W + 1];
 }
 
