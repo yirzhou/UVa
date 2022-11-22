@@ -27,7 +27,25 @@ void fastio()
     cout.tie(0);
 }
 
+int f(ull id, ull p, ull n)
+{
+    if (p >= n)
+        return id == 0 ? 0 : 1;
+    if (id == 0)
+        return f(1 - id, p * 9, n);
+    return f(1 - id, p * 2, n);
+}
+
 int main()
 {
     fastio();
+
+    ull n;
+    while (cin >> n) {
+        if (f(0, 1, n))
+            cout << "Stan";
+        else
+            cout << "Ollie";
+        cout << " wins.\n";
+    }
 }
