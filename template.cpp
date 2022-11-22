@@ -19,3 +19,7 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<ll> vll;
+
+int main()
+{
+}
