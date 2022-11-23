@@ -3,6 +3,7 @@
 using namespace std;
 
 #define INF 1000000000
+#define EPS 1e-9
 #define pb push_back
 #define fi first
 #define se second
