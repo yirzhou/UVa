@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -190,25 +189,108 @@ double dist_to_line_segment(point p, point a, point b, point& c)
     return dist_to_line(p, a, b, c);
 }
 
-/*
-Circle
-*/
-
-int inside_circle(const point& p, const point& c, double r)
+void fastio()
 {
-    double dx = p.x - c.x, dy = p.y - c.y;
-    int Euc = pow(dx, 2.0) + pow(dy, 2.0), rSq = pow(r, 2.0);
-    return Euc < rSq ? 1 : ((Euc - rSq < EPS) ? 0 : -1); // in/border/out
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 }
 
-bool circle2PtsRad(point p1, point p2, double r, point& c)
+struct pole {
+    point p;
+    int h;
+    double grad;
+};
+
+double compute_grad(point a)
 {
-    double d2 = pow((p1.x - p2.x), 2.0) + pow((p1.y - p2.y), 2.0);
-    double det = r * r / d2 - 0.25;
-    if (det < EPS)
-        return false;
-    double h = sqrt(det);
-    c.x = (p1.x + p2.x) * 0.5 + (p1.y - p2.y) * h;
-    c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
-    return true;
+    line l;
+    points2line(a, point(0.0, 0.0), l);
+    return l.a;
+}
+
+int get_gid(point& p)
+{
+    double x = p.x, y = p.y;
+    if (x > 0.0 && y > 0.0)
+        return 0;
+    if (x < 0.0 && y > 0.0)
+        return 1;
+    if (x < 0.0 && y < 0.0)
+        return 2;
+    if (x > 0.0 && y < 0.0)
+        return 3;
+
+    // y == 0.0
+    if (y - 0.0 < EPS) {
+        if (x > 0.0)
+            return 4;
+        return 5;
+    }
+
+    // x == 0.0
+    if (x - 0.0 < EPS)
+        if (y > 0.0)
+            return 6;
+    return 7;
+}
+
+const point o(0, 0);
+vector<point> res;
+
+void solve(vector<pole>& poles)
+{
+    sort(ALL(poles), [&](const pole& a, const pole& b) {
+        if (a.grad == b.grad)
+            return dist(a.p, o) < dist(b.p, o);
+        return a.grad < b.grad;
+    });
+    int maxh = poles[0].h;
+    for (int i = 1; i < poles.size(); ++i) {
+        pole cur = poles[i], prev = poles[i - 1];
+        if (cur.grad != prev.grad) {
+            maxh = cur.h;
+        } else {
+            if (maxh >= cur.h)
+                res.pb(cur.p);
+            else
+                maxh = cur.h;
+        }
+    }
+}
+
+int main()
+{
+    fastio();
+    int n, x, y, z;
+    int no = 1;
+
+    while (cin >> n && n) {
+        vector<vector<pole>> groups(8);
+        cout << "Data set " << no++ << ":\n";
+        vector<pole> poles;
+
+        // Divide into groups/quadrants and on lines.
+        // In total 8 groups
+        while (n--) {
+            cin >> x >> y >> z;
+            point poi = point(x, y);
+            groups[get_gid(poi)].pb({ poi, z, compute_grad(poi) });
+        }
+
+        res.clear();
+        for (auto& poles : groups)
+            solve(poles);
+
+        if (res.empty())
+            cout << "All the lights are visible.\n";
+        else {
+            cout << "Some lights are not visible:\n";
+            sort(ALL(res));
+            for (int i = 0; i < res.size(); ++i) {
+                point p = res[i];
+                cout << "x = " << p.x << ", y = " << p.y << (i == res.size() - 1 ? "." : ";") << endl;
+            }
+        }
+    }
 }
