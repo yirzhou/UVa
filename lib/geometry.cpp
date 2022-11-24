@@ -212,3 +212,56 @@ bool circle2PtsRad(point p1, point p2, double r, point& c)
     c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
     return true;
 }
+
+/*
+Triangle
+*/
+
+double perimeter(double ab, double bc, double ca)
+{
+    return (ab + bc + ca);
+}
+
+double area(double ab, double bc, double ca)
+{
+    double s = perimeter(ab, bc, ca) / 2.0;
+    return sqrt(s * (s - ab) * (s - bc) * (s - ca));
+}
+
+double r_in_circle(double ab, double bc, double ca)
+{
+    return area(ab, bc, ca) / (0.5 * perimeter(ab, bc, ca));
+}
+
+double r_in_circle(point a, point b, point c)
+{
+    return r_in_circle(dist(a, b), dist(b, c), dist(a, c));
+}
+
+int in_circle(point p1, point p2, point p3, point& ctr, double& r)
+{
+    r = r_in_circle(p1, p2, p3);
+    if (fabs(r) < EPS)
+        return 0;
+    line l1, l2;
+    double ratio = dist(p1, p2) / dist(p1, p3);
+    point p = translate(p2, scale(to_vec(p2, p3), ratio / (1 + ratio)));
+    points2line(p1, p, l1);
+
+    ratio = dist(p2, p1) / dist(p2, p3);
+    p = translate(p1, scale(to_vec(p1, p3), ratio / (1 + ratio)));
+    points2line(p2, p, l2);
+
+    are_intersect(l1, l2, ctr);
+    return 1;
+}
+
+double r_circum_circle(double ab, double bc, double ca)
+{
+    return ab * bc * ca / (4.0 * area(ab, bc, ca));
+}
+
+double r_circum_circle(point a, point b, point c)
+{
+    return r_circum_circle(dist(a, b), dist(b, c), dist(c, a));
+}
