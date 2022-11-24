@@ -69,7 +69,7 @@ struct point {
 
     string print()
     {
-        return "(" + to_string(x) + "," + to_string(y) + ")";
+        return "(" + to_string(x) + ", " + to_string(y) + ")";
     }
 };
 
@@ -194,21 +194,86 @@ double dist_to_line_segment(point p, point a, point b, point& c)
 Circle
 */
 
-int inside_circle(const point& p, const point& c, double r)
+int inside_circle(point p, point c, double r)
 {
     double dx = p.x - c.x, dy = p.y - c.y;
-    double Euc = pow(dx, 2.0) + pow(dy, 2.0), rSq = pow(r, 2.0);
-    return rSq - Euc > EPS ? 1 : (fabs(Euc - rSq) < EPS ? 0 : -1); // in/border/out
+    double Euc = dx * dx + dy * dy, rSq = r * r;
+    return Euc < rSq ? 0 : fabs(Euc - rSq) < EPS ? 1
+                                                 : 2;
 }
 
 bool circle2PtsRad(point p1, point p2, double r, point& c)
 {
-    double d2 = pow((p1.x - p2.x), 2.0) + pow((p1.y - p2.y), 2.0);
+    double d2 = (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
     double det = r * r / d2 - 0.25;
     if (det < EPS)
         return false;
     double h = sqrt(det);
+    // to get the other center, reverse p1 and p2
     c.x = (p1.x + p2.x) * 0.5 + (p1.y - p2.y) * h;
     c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
     return true;
+}
+
+void fastio()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+}
+
+bool check(point& c, double r, vector<point>& v)
+{
+    for (auto& p : v) {
+        if (dist(c, p) > r)
+            return false;
+    }
+    return true;
+}
+
+bool check(double& cx, double& cy, double& r, vector<point>& v)
+{
+    for (auto& p : v) {
+        if (pow((cx - p.x), 2.0) + pow(cy - p.y, 2.0) > r * r + 1e-8)
+            return false;
+    }
+    return true;
+}
+
+int main()
+{
+    fastio();
+    int n;
+    double x, y, r;
+    while (cin >> n && n) {
+        vector<point> v;
+        for (int i = 0; i < n; ++i) {
+            cin >> x >> y;
+            v.pb(point(x, y));
+        }
+        cin >> r;
+        // for every (p1,p2) find c1,c2
+        // for [c1,c2], check if every point p is within the circle.
+        bool res = false;
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                double dx1, dx2, cx1, cx2, dy1, dy2, cy1, cy2;
+                point p1 = v[i], p2 = v[j];
+                dx1 = (p1.x - p2.x) / 2.0, dy1 = (p1.y - p2.y) / 2.0;
+                double L = sqrt(dx1 * dx1 + dy1 * dy1);
+                if (L > r)
+                    continue;
+                dx2 = -dy1 * sqrt(r * r - L * L) / L;
+                dy2 = dx1 * sqrt(r * r - L * L) / L;
+                cx1 = p2.x + dx1 + dx2;
+                cy1 = p2.y + dy1 + dy2;
+                cx2 = p2.x + dx1 - dx2;
+                cy2 = p2.y + dy1 - dy2;
+                if (check(cx1, cy1, r, v) || check(cx2, cy2, r, v)) {
+                    res = true;
+                }
+            }
+        }
+
+        cout << (res ? "The polygon can be packed in the circle.\n" : "There is no way of packing that polygon.\n");
+    }
 }

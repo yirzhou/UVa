@@ -269,9 +269,6 @@ int main()
         vector<vector<pole>> groups(8);
         cout << "Data set " << no++ << ":\n";
         vector<pole> poles;
-
-        // Divide into groups/quadrants and on lines.
-        // In total 8 groups
         while (n--) {
             cin >> x >> y >> z;
             point poi = point(x, y);
