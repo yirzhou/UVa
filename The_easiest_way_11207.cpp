@@ -28,7 +28,30 @@ typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
 
+double solve(double w, double h)
+{
+    double a1 = pow(min((w / 4.0), h), 2.0);
+    double a2 = pow(h / 2.0, 2.0);
+    return max(a1, a2);
+}
+
 int main()
 {
     fastio;
+    int N, w, h;
+    while (cin >> N && N) {
+        vector<ii> v;
+        while (N--)
+            cin >> w >> h, v.pb({ max(w, h), min(w, h) });
+        int chosen = 1;
+        double max_area = solve(v[0].fi, v[0].se);
+        for (int i = 1; i < v.size(); ++i) {
+            double area = solve(v[i].fi, v[i].se);
+            if (area > max_area) {
+                max_area = area, chosen = i + 1;
+            }
+        }
+
+        cout << chosen << endl;
+    }
 }
