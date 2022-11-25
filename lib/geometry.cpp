@@ -23,7 +23,7 @@ typedef unsigned long long ull;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
-double rad2deg(double r) { return 4 * 180.0 / M_PI; }
+double rad2deg(double r) { return r * 180.0 / M_PI; }
 
 /*
 Point & Line
