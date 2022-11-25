@@ -14,6 +14,12 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
@@ -21,14 +27,3 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
-
-void fastio()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-}
-
-int main()
-{
-    fastio();
-}
