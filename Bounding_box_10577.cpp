@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -15,19 +14,23 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
 double rad2deg(double r) { return r * 180.0 / M_PI; }
 
-/*
-Point & Line
-*/
 struct point_i {
     int x, y;
     point_i() { x = y = 0; }
@@ -37,14 +40,14 @@ struct point_i {
 
     bool operator<(point_i other) const
     {
-        if (x != other.x)
+        if (fabs(x - other.x) > EPS)
             return x < other.x;
         return y < other.y;
     }
 
     bool operator==(point_i other) const
     {
-        return (x == other.x && y == other.y);
+        return (fabs(x - other.x) < EPS && fabs(y - other.y) < EPS);
     }
 };
 
@@ -57,14 +60,14 @@ struct point {
 
     bool operator<(point other) const
     {
-        if (fabs(x - other.x) > EPS)
+        if (x != other.x)
             return x < other.x;
         return y < other.y;
     }
 
     bool operator==(point other) const
     {
-        return (fabs(x - other.x) < EPS && fabs(y - other.y) < EPS);
+        return (x == other.x && y == other.y);
     }
 
     string print()
@@ -86,15 +89,20 @@ struct vec {
     }
 };
 
-point get_midpoint(point& a, point& b)
-{
-    return point((a.x + b.x) / 2.0, (a.y + b.y) / 2.0);
-}
-
 point rotate(point p, double theta)
 {
     double rad = deg2rad(theta);
     return point(p.x * cos(rad) - p.y * sin(rad), p.x * sin(rad) + p.y * cos(rad));
+}
+
+point rotateCCW(point p, double rad)
+{
+    return point(p.x * cosl(rad) - p.y * sinl(rad), p.x * sinl(rad) + p.y * cosl(rad));
+}
+
+point get_midpoint(point& a, point& b)
+{
+    return point((a.x + b.x) / 2.0, (a.y + b.y) / 2.0);
 }
 
 double dot(vec a, vec b) { return (a.x * b.x + a.y * b.y); }
@@ -134,6 +142,7 @@ void points2line(const point& p1, const point& p2, line& l)
 
 void pointslope2line(point p, double m, line& l)
 {
+    // y-intercept = l.c / l.b
     l.a = -m;
     l.b = 1.0;
     l.c = -((l.a * p.x) + (l.b * p.y));
@@ -270,6 +279,7 @@ double r_circum_circle(point a, point b, point c)
 {
     return r_circum_circle(dist(a, b), dist(b, c), dist(c, a));
 }
+
 double perp_slope(double slope)
 {
     return pow((slope * -1.0), -1.0);
@@ -292,12 +302,33 @@ point get_circumcenter(point& a, point& b, point& c)
     return circum;
 }
 
-int insideRectangle(double x, double y, double w, double h, double a, double b)
+int main()
 {
-    if ((x < a) && (a < x + w) && (y < b) && (b < y + h))
-        return 1; // strictly inside
-    else if ((x <= a) && (a <= x + w) && (y <= b) && (b <= y + h))
-        return 0; // at border
-    else
-        return -1; // outside
+    fastio;
+    precision(3);
+
+    double n, x1, y1, x2, y2, x3, y3;
+    int no = 1;
+    while (cin >> n && n != 0) {
+        cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+        point a(x1, y1), b(x2, y2), c(x3, y3);
+        point ctr = get_circumcenter(a, b, c);
+
+        double rad = 2 * M_PI / n;
+        double minx, maxx, miny, maxy;
+        minx = maxx = x1;
+        miny = maxy = y1;
+
+        point cur = a;
+        for (int i = 0; i < n; ++i) {
+            cur = rotateCCW(point(cur.x - ctr.x, cur.y - ctr.y), rad);
+            cur.x += ctr.x, cur.y += ctr.y;
+            minx = min(minx, cur.x), miny = min(miny, cur.y);
+            maxx = max(maxx, cur.x), maxy = max(maxy, cur.y);
+        }
+
+        double res = (maxx - minx) * (maxy - miny);
+
+        cout << "Polygon " << (int)(no++) << ": " << res << endl;
+    }
 }

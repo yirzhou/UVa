@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -15,11 +14,18 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
@@ -300,4 +306,33 @@ int insideRectangle(double x, double y, double w, double h, double a, double b)
         return 0; // at border
     else
         return -1; // outside
+}
+
+bool separate(point_i a1, point_i b1, point_i c1, point_i d1, point_i a2, point_i b2, point_i c2, point_i d2)
+{
+    if (b2.x <= a1.x || c2.y >= a1.y || a2.x >= b1.x || a2.y <= c1.y)
+        return true;
+    return false;
+}
+
+int main()
+{
+    int t;
+    int xll1, yll1, xur1, yur1, xll2, yll2, xur2, yur2;
+    cin >> t;
+    for (int i = 1; i <= t; ++i) {
+        cin >> xll1 >> yll1 >> xur1 >> yur1 >> xll2 >> yll2 >> xur2 >> yur2;
+        point_i a1(xll1, yur1), b1(xur1, yur1), c1(xll1, yll1), d1(xur1, yll1);
+        point_i a2(xll2, yur2), b2(xur2, yur2), c2(xll2, yll2), d2(xur2, yll2);
+
+        if (!separate(a1, b1, c1, d1, a2, b2, c2, d2) || !separate(a2, b2, c2, d2, a1, b1, c1, d1)) {
+            point_i p1(max(c1.x, c2.x), max(c1.y, c2.y));
+            point_i p2(min(d1.x, d2.x), min(b2.y, b1.y));
+            cout << p1.x << " " << p1.y << " " << p2.x << " " << p2.y << endl;
+        } else {
+            cout << "No Overlap\n";
+        }
+        if (i < t)
+            cout << endl;
+    }
 }

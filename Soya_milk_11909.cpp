@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -15,11 +14,18 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
@@ -37,14 +43,14 @@ struct point_i {
 
     bool operator<(point_i other) const
     {
-        if (x != other.x)
+        if (fabs(x - other.x) > EPS)
             return x < other.x;
         return y < other.y;
     }
 
     bool operator==(point_i other) const
     {
-        return (x == other.x && y == other.y);
+        return (fabs(x - other.x) < EPS && fabs(y - other.y) < EPS);
     }
 };
 
@@ -57,14 +63,14 @@ struct point {
 
     bool operator<(point other) const
     {
-        if (fabs(x - other.x) > EPS)
+        if (x != other.x)
             return x < other.x;
         return y < other.y;
     }
 
     bool operator==(point other) const
     {
-        return (fabs(x - other.x) < EPS && fabs(y - other.y) < EPS);
+        return (x == other.x && y == other.y);
     }
 
     string print()
@@ -85,11 +91,6 @@ struct vec {
     {
     }
 };
-
-point get_midpoint(point& a, point& b)
-{
-    return point((a.x + b.x) / 2.0, (a.y + b.y) / 2.0);
-}
 
 point rotate(point p, double theta)
 {
@@ -270,34 +271,22 @@ double r_circum_circle(point a, point b, point c)
 {
     return r_circum_circle(dist(a, b), dist(b, c), dist(c, a));
 }
-double perp_slope(double slope)
-{
-    return pow((slope * -1.0), -1.0);
-}
 
-point get_circumcenter(point& a, point& b, point& c)
+int main()
 {
-    point m1 = get_midpoint(a, b), m2 = get_midpoint(b, c);
-    line l1, l2;
-    points2line(a, b, l1), points2line(b, c, l2);
-    double perp1 = perp_slope(-l1.a / l1.b), perp2 = perp_slope(-l2.a / l2.b);
-    line perpbi1, perpbi2;
-    pointslope2line(m1, perp1, perpbi1), pointslope2line(m2, perp2, perpbi2);
-    point circum;
-    are_intersect(perpbi1, perpbi2, circum);
-    if (fabs(circum.x - 0.0) < EPS)
-        circum.x = 0.0;
-    if (fabs(circum.y - 0.0) < EPS)
-        circum.y = 0.0;
-    return circum;
-}
+    fastio;
+    precision(3);
 
-int insideRectangle(double x, double y, double w, double h, double a, double b)
-{
-    if ((x < a) && (a < x + w) && (y < b) && (b < y + h))
-        return 1; // strictly inside
-    else if ((x <= a) && (a <= x + w) && (y <= b) && (b <= y + h))
-        return 0; // at border
-    else
-        return -1; // outside
+    double l, w, h, theta;
+    while (cin >> l >> w >> h >> theta) {
+        theta = deg2rad(theta);
+        double max_angle = atan(h / l);
+        double res;
+        if (theta <= max_angle) {
+            res = (2 * h - l * tan(theta)) / 2 * w * l;
+        } else {
+            res = h * w / 2 * h / tan(theta);
+        }
+        cout << res << " mL\n";
+    }
 }
