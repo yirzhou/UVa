@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -15,11 +14,18 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
@@ -446,4 +452,32 @@ vector<point> CH_Andrew(vector<point>& Pts)
     }
     H.resize(k);
     return H;
+}
+
+int main()
+{
+    fastio;
+    precision(2);
+    int N;
+    double x, y;
+    int tno = 1;
+    while (cin >> N && N) {
+        cout << "Tile #" << tno++ << endl;
+        vector<point> P;
+        double fx, fy;
+        for (int i = 0; i < N; ++i) {
+            cin >> x >> y;
+            if (i == 0)
+                fx = x, fy = y;
+            P.pb({ x, y });
+        }
+        P.pb({ fx, fy });
+
+        double tile_area = area(P);
+        vector<point> H = CH_Andrew(P);
+        double total_area = area(H);
+
+        double wasted = (total_area - tile_area) / total_area * 100;
+        cout << "Wasted Space = " << wasted << " %\n\n";
+    }
 }
