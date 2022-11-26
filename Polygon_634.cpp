@@ -4,7 +4,6 @@ using namespace std;
 
 #define INF 1000000000
 #define EPS 1e-9
-#define PI arccos(-1.0)
 #define pb push_back
 #define fi first
 #define se second
@@ -15,11 +14,18 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0)
+#define precision(a) \
+    cout << fixed;   \
+    cout.precision(a)
 
 typedef vector<int> vi;
 typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
+typedef long double ld;
 typedef vector<ll> vll;
 
 double deg2rad(double d) { return d * M_PI / 180.0; }
@@ -461,4 +467,29 @@ bool inPolygon(point pt, const vector<point>& P)
     }
 
     return fabs(fabs(sum) - 2 * M_PI) < EPS;
+}
+
+int main()
+{
+    fastio;
+    int n;
+    double x, y;
+    while (cin >> n && n) {
+        vector<point> P;
+        double x0, y0;
+        for (int i = 0; i < n; ++i) {
+            cin >> x >> y;
+            if (i == 0) {
+                x0 = x, y0 = y;
+            }
+            P.pb({ x, y });
+        }
+        P.pb({ x0, y0 });
+        double xn, yn;
+        cin >> xn >> yn;
+        if (insidePolygon(point(xn, yn), P) != -1)
+            cout << "T\n";
+        else
+            cout << "F\n";
+    }
 }
