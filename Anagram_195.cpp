@@ -41,12 +41,10 @@ int main()
     fastio;
     int N;
     cin >> N;
-    snl;
     string s;
     while (N--) {
-        getline(cin, s);
+        cin >> s;
         sort(s.begin(), s.end(), cmp);
-
         do {
             cout << s << endl;
         } while (next_permutation(s.begin(), s.end(), cmp));
