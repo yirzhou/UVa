@@ -32,13 +32,14 @@ typedef vector<ll> vll;
 
 typedef bitset<MAXN> bs;
 
-unordered_set<size_t> S1, S2;
-hash<bs> hash_fn;
+unordered_set<ull> S1, S2;
 
-vector<size_t> P;
+vector<ull> hashvals;
 
 int ptr = 0;
-const size_t M = 1e9 + 7;
+const ull M = 1e9 + 7;
+ull seed1 = M, P = 7;
+int N;
 
 int parse(string& s)
 {
@@ -55,9 +56,9 @@ bool is_digit(char c)
     return c >= '0' && c <= '9';
 }
 
-size_t f(string& s, unordered_set<size_t>& S)
+ull f(string& s, unordered_set<ull>& S)
 {
-    size_t hashval = 0;
+    ull hashval = 0;
     if (ptr >= s.size()) {
         return hashval;
     }
@@ -72,35 +73,34 @@ size_t f(string& s, unordered_set<size_t>& S)
 
     // Parse left tree
     if (s[ptr] == '(') {
-        ptr++, hashval = (hashval + f(s, S) % M) % M;
+        ptr++, hashval += f(s, S);
     } else if (is_digit(s[ptr])) {
         int num = parse(s);
         // Set bit
-        hashval = (hashval + (num)*P[num - 1] % M) % M;
+        hashval += hashvals[num];
         S.emplace(hashval);
     }
 
     if (ptr < s.size())
-        hashval = (hashval + f(s, S) % M) % M;
+        hashval += f(s, S);
 
     S.emplace(hashval);
     // Compute hash
     return hashval;
 }
 
-void prepare(int N)
+void prepare(int n)
 {
-    P.assign(N, 0);
-    P[0] = 1;
-    for (int i = 1; i < N; ++i) {
-        P[i] = (P[i - 1] * MAXN) % M;
+    hashvals.assign(n + 1, 0);
+    for (int i = 1; i <= n; ++i) {
+        hashvals[i] = seed1;
+        seed1 *= P;
     }
 }
 
 int main()
 {
     fastio;
-    int N;
     string s1, s2;
     getline(cin, s1);
     N = stoi(s1);
