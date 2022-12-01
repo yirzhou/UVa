@@ -31,6 +31,8 @@ typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
 
+ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
 int main()
 {
     fastio;
