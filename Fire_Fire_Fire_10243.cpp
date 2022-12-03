@@ -34,7 +34,6 @@ typedef vector<ll> vll;
 ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 int N;
 vector<unordered_set<int>> al;
-vi V;
 
 vector<vi> dp;
 
@@ -62,7 +61,6 @@ int main()
     int cnt, v;
     while (cin >> N && N) {
         al.assign(N + 1, unordered_set<int>());
-        V.assign(N + 1, 0);
         dp.assign(N + 1, vi(2, -1));
         for (int u = 1; u <= N; ++u) {
             cin >> cnt;
