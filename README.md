@@ -12,3 +12,4 @@ cp3
 - [UVa 1231](https://vjudge.net/problem/UVA-1231)
 - [UVa 1099](https://vjudge.net/problem/UVA-1099)
 - [UVa 10029](https://vjudge.net/problem/UVA-10029)
+- [Kattis - (un)Fair Play](https://open.kattis.com/problems/unfairplay)

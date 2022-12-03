@@ -30,6 +30,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
+
 typedef tuple<int, ll, ll> edge;
 
 const ll INFTY = 1e18;
@@ -41,6 +42,7 @@ private:
     vector<vi> AL;
     vi d, last;
     vector<ii> p;
+    map<ii, int> EMap;
 
     bool BFS(int s, int t) // Find augmenting path
     {
@@ -107,8 +109,10 @@ public:
             return;
         EL.emplace_back(v, w, 0);
         AL[u].pb(EL.size() - 1);
+        EMap[{ u, v }] = EL.size() - 1;
         EL.emplace_back(u, (directed ? 0 : w), 0);
         AL[v].pb(EL.size() - 1);
+        EMap[{ v, u }] = EL.size() - 1;
     }
 
     ll edmonds_karp(int s, int t)
@@ -133,4 +137,93 @@ public:
         }
         return mf;
     }
+
+    int get_edge_flow(int u, int v)
+    {
+        return get<2>(EL[EMap[{ u, v }]]);
+    }
 };
+
+int main()
+{
+    fastio;
+    int N, M;
+    vi points;
+    while (cin >> N && N != -1) {
+        cin >> M;
+        points.assign(N + 1, 0);
+        for (int i = 1; i <= N; ++i)
+            cin >> points[i];
+        int a, b;
+
+        vector<ii> matches(M);
+
+        int pointsN = points.back();
+        int m_prime = 0;
+        for (int i = 0; i < M; ++i) {
+            cin >> a >> b;
+            matches[i] = { a, b };
+            if (a == N || b == N)
+                pointsN += 2;
+            else
+                m_prime++;
+        }
+
+        int s = 0, t = N + 1, initialV = N + 2 + M;
+        max_flow mf(initialV);
+        bool can = true;
+        for (auto& point : points) {
+            if (point >= pointsN) {
+                can = false;
+                break;
+            }
+        }
+
+        if (!can) {
+            cout << "NO\n";
+            continue;
+        }
+
+        int matchidx;
+        for (int i = 0; i < M; ++i) {
+            auto [a, b] = matches[i];
+            matchidx = t + i + 1;
+            if (a != N && b != N) {
+                // connect source
+
+                mf.add_edge(s, matchidx, 2);
+                // Connect match index
+                mf.add_edge(matchidx, a, 2);
+                mf.add_edge(matchidx, b, 2);
+            }
+        }
+
+        for (int i = 1; i < N; ++i)
+            mf.add_edge(i, t, pointsN - points[i] - 1);
+
+        int f = mf.dinic(s, t);
+        if (f != 2 * m_prime) {
+            cout << "NO\n";
+            continue;
+        }
+        for (int i = 0; i < M; ++i) {
+            int u = matches[i].fi, v = matches[i].se;
+            if (u == N)
+                cout << "0";
+            else if (v == N)
+                cout << "2";
+            else {
+                int matchidx = t + i + 1;
+                if (mf.get_edge_flow(matchidx, u) == 2)
+                    cout << "0";
+                else if (mf.get_edge_flow(matchidx, v) == 2)
+                    cout << "2";
+                else
+                    cout << "1";
+            }
+            cout << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
