@@ -39,17 +39,17 @@ vi AL;
 
 int ans = 0;
 
-void backtrack(int mask, int i, int depth)
+void backtrack(int m1, int m2, int i, int depth)
 {
-    if (mask == ((1 << 26) - 1)) {
+    if ((m1 | m2) == ((1 << 26) - 1)) {
         ans++;
     }
 
     if (i == N)
         return;
 
-    backtrack(mask | AL[i], i + 1, depth);
-    backtrack(mask, i + 1, depth + 1);
+    backtrack(m1 | AL[i], 0, i + 1, depth);
+    backtrack(m1, AL[i], i + 1, depth + 1);
 }
 
 int main()
@@ -64,7 +64,7 @@ int main()
             AL[i] |= (1 << (c - 'a'));
     }
 
-    backtrack(0, 0, 1);
-    cout << ans << endl;
+    backtrack(0, 0, 0, 1);
+    cout << ans / 2 << endl;
     return 0;
 }
