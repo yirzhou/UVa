@@ -96,3 +96,64 @@ public:
         return 0;
     }
 };
+
+int T, N, id = 0;
+
+struct student {
+    int h;
+    char gender;
+    string style, sport;
+};
+
+vector<student> students;
+
+int check(int u, int v)
+{
+    student s1 = students[u], s2 = students[v];
+    return (abs(s1.h - s2.h) <= 40 && s1.style == s2.style && s1.sport != s2.sport);
+}
+
+int main()
+{
+    fastio;
+
+    int h;
+    char gender;
+    string style, sport;
+
+    cin >> T;
+    while (T--) {
+        students.clear();
+        cin >> N;
+        vi boys, girls;
+        vector<student> all;
+        for (int i = 0; i < N; ++i) {
+            cin >> h >> gender >> style >> sport;
+            if (gender == 'M')
+                boys.pb(i);
+            else
+                girls.pb(i);
+            all.pb({ h, gender, style, sport });
+        }
+
+        for (auto& u : boys)
+            students.pb(all[u]);
+        for (auto& v : girls)
+            students.pb(all[v]);
+
+        aug AUG(boys.size() + girls.size(), boys.size());
+        for (int u = 0; u < boys.size(); ++u) {
+            for (int v = boys.size(); v < boys.size() + girls.size(); ++v) {
+                if (check(u, v)) {
+                    AUG.add_edge(u, v);
+                }
+            }
+        }
+
+        int res = N - AUG.mcbm();
+
+        cout << res << endl;
+    }
+
+    return 0;
+}
