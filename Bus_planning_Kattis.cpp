@@ -80,7 +80,6 @@ int f(int mask)
     int ans = INT_MAX;
     int optimal;
 
-    // Get who hasn't been assigned
     int nxt = ((1 << n) - 1) ^ mask;
     for (int ss = nxt; ss; ss = (ss - 1) & nxt) {
         if (sets[ss]) {
