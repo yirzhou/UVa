@@ -19,7 +19,7 @@ using namespace std;
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
 #define fastio                        \
     ios_base::sync_with_stdio(false); \
-    cin.tie(0)
+    cin.tie(nullptr)
 #define precision(a) \
     cout << fixed;   \
     cout.precision(a)
@@ -30,6 +30,10 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
+
+#define LSOne(S) ((S) & -(S))
+
+int n, q;
 
 #define LSOne(S) ((S) & -(S))
 
@@ -61,15 +65,15 @@ public:
         }
     }
 
-    int rsq(int j)
+    ll rsq(int j)
     {
-        int sum = 0;
-        for (; j; j -= LSOne(j))
+        ll sum = 0;
+        for (; j > 0; j -= LSOne(j))
             sum += ft[j];
         return sum;
     }
 
-    int rsq(int i, int j)
+    ll rsq(int i, int j)
     {
         return rsq(j) - rsq(i - 1);
     }
@@ -91,48 +95,25 @@ public:
     }
 };
 
-class RUPQ {
-private:
-    FenwickTree ft;
-
-public:
-    RUPQ(int m)
-        : ft(FenwickTree(m)) {};
-    void range_update(int ui, int uj, int v)
-    {
-        ft.update(ui, v);
-        ft.update(uj + 1, -v);
+int main()
+{
+    fastio;
+    cin >> n >> q;
+    FenwickTree ft(n + 1);
+    char op;
+    ll val;
+    int i;
+    while (q--) {
+        cin >> op;
+        if (op == '?') {
+            cin >> i;
+            ll res = ft.rsq(i);
+            cout << res << endl;
+        } else {
+            cin >> i >> val;
+            ft.update(i + 1, val);
+        }
     }
 
-    ll point_query(int i) { return ft.rsq(i); }
-};
-
-class RURQ {
-private:
-    RUPQ rupq;
-    FenwickTree purq;
-
-public:
-    RURQ(int m)
-        : rupq(RUPQ(m))
-        , purq(FenwickTree(m))
-    {
-    }
-
-    void range_update(int ui, int uj, int v)
-    {
-        rupq.range_update(ui, uj, v);
-        purq.update(ui, v * (ui - 1));
-        purq.update(uj + 1, -v * uj);
-    }
-
-    ll rsq(int j)
-    {
-        return rupq.point_query(j) * j - purq.rsq(j);
-    }
-
-    ll rsq(int i, int j)
-    {
-        return rsq(j) - rsq(i - 1);
-    }
-};
+    return 0;
+}
