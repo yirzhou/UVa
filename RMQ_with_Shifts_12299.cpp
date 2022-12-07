@@ -121,3 +121,72 @@ public:
 
     int RMQ(int i, int j) { return RMQ(1, 0, n - 1, i, j); }
 };
+
+vi A;
+
+void print(vi& A)
+{
+    for (auto& a : A)
+        cout << a << " ";
+    cout << endl;
+}
+
+vi get_idx(string& s, int orig = 1)
+{
+    int num = 0;
+    vi idx;
+    for (int j = 6; j < s.size(); ++j) {
+        if (s[j] == ',' || j == s.size() - 1) {
+            idx.pb(orig ? num : num - 1);
+            num = 0;
+        } else {
+            num = num * 10 + s[j] - '0';
+        }
+    }
+    return idx;
+}
+
+void process_shift(string& s, vi& A, SegmentTree& st)
+{
+    vi idx = get_idx(s, 0);
+
+    int first_val = A[idx[0]];
+    for (int i = 0; i < idx.size() - 1; ++i)
+        A[idx[i]] = A[idx[i + 1]];
+    A[idx.back()] = first_val;
+
+    for (int i = 0; i < idx.size(); ++i) {
+        st.update(idx[i], idx[i], A[idx[i]]);
+    }
+}
+
+int process_query(string& s, SegmentTree& st)
+{
+    vi idx = get_idx(s);
+    return st.RMQ(idx[0] - 1, idx[1] - 1);
+}
+
+int main()
+{
+    fastio;
+    int n, q;
+    cin >> n >> q;
+    string s;
+    int upper = pow(2, ceil(log2(n)));
+    A.assign(upper, INF);
+    for (int i = 0; i < n; ++i)
+        cin >> A[i];
+
+    SegmentTree st(A);
+
+    while (q--) {
+        cin >> s;
+        if (s[0] == 'q') {
+            int res = process_query(s, st);
+            cout << res << endl;
+        } else {
+            process_shift(s, A, st);
+        }
+    }
+    return 0;
+}
