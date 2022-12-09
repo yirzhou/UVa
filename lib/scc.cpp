@@ -33,8 +33,34 @@ typedef long double ld;
 typedef vector<vi> vii;
 typedef vector<ll> vll;
 
-vi dfs_num, S;
+int cnt, numSCC;
+vi dfs_num, dfs_low, S, visited;
 vii AL, AL_T;
+
+void tarjanSCC(int u)
+{
+    dfs_low[u] = dfs_num[u] = cnt;
+    cnt++;
+    S.pb(u);
+    visited[u] = 1;
+    for (auto& v : AL[u]) {
+        if (dfs_num[v] == UNVISITED)
+            tarjanSCC(v);
+        if (visited[v])
+            dfs_low[u] = min(dfs_low[u], dfs_low[v]);
+    }
+
+    if (dfs_low[u] == dfs_num[u]) {
+        ++numSCC;
+        while (1) {
+            int v = S.back();
+            S.pop_back();
+            visited[v] = 0;
+            if (u == v)
+                break;
+        }
+    }
+}
 
 // pass = 1 (original), 2 (transpose)
 void Kosaraju(int u, int pass)
