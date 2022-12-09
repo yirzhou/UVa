@@ -3,9 +3,9 @@
 using namespace std;
 
 #define oo INT_MAX
-#define UNVISITED -1
 #define INF 1000000000
 #define EPS 1e-9
+#define UNVISITED -1
 #define pb push_back
 #define fi first
 #define se second
@@ -30,14 +30,41 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
-typedef vector<ll> vll;
 typedef vector<vi> vii;
+typedef vector<ll> vll;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+vi dfs_num, S;
+vii AL, AL_T;
 
-int main()
+// pass = 1 (original), 2 (transpose)
+void Kosaraju(int u, int pass)
 {
-    fastio;
+    dfs_num[u] = 1;
+    vi& neighbor = (pass = 1) ? AL[u] : AL_T[u];
+    for (auto& v : neighbor) {
+        if (dfs_num[v] == UNVISITED)
+            Kosaraju(v, pass);
+    }
+    S.pb(u);
+}
 
-    return 0;
+int count_SCC()
+{
+    S.clear();
+    int N = AL.size();
+    dfs_num.assign(N, UNVISITED);
+    for (int u = 0; u < N; ++u) {
+        if (dfs_num[u] == UNVISITED)
+            Kosaraju(u, 1);
+    }
+
+    int num_SCC = 0;
+
+    dfs_num.assign(N, UNVISITED);
+    for (int i = N - 1; i >= 0; --i) {
+        if (dfs_num[S[i]] == UNVISITED)
+            ++num_SCC, Kosaraju(S[i], 2);
+    }
+
+    return num_SCC;
 }
