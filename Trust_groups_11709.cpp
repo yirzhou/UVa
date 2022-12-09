@@ -3,9 +3,9 @@
 using namespace std;
 
 #define oo INT_MAX
+#define UNVISITED -1
 #define INF 1000000000
 #define EPS 1e-9
-#define UNVISITED -1
 #define pb push_back
 #define fi first
 #define se second
@@ -30,11 +30,18 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
+typedef vector<ll> vll;
+typedef vector<vi> vii;
+
 typedef vector<vi> vii;
 typedef vector<ll> vll;
 
 vi dfs_num, S;
 vii AL, AL_T;
+
+unordered_map<string, int> M;
+
+int P, T;
 
 // pass = 1 (original), 2 (transpose)
 void Kosaraju(int u, int pass)
@@ -67,4 +74,39 @@ int count_SCC()
     }
 
     return num_SCC;
+}
+
+string sn, fn;
+
+string get_name()
+{
+    cin >> sn >> fn;
+    string full;
+    sn = sn.substr(0, sn.find(','));
+    full = sn + ' ' + fn;
+    return full;
+}
+
+int main()
+{
+    fastio;
+
+    while (cin >> P >> T && (P || T)) {
+        M.clear();
+        for (int u = 0; u < P; ++u) {
+            string full = get_name();
+            M[full] = u;
+        }
+
+        AL.assign(P, vi()), AL_T.assign(P, vi());
+        for (int i = 0; i < T; ++i) {
+            string f1 = get_name(), f2 = get_name();
+            int u = M[f1], v = M[f2];
+            AL[u].pb(v), AL_T[v].pb(u);
+        }
+
+        int scc = count_SCC();
+        cout << scc << endl;
+    }
+    return 0;
 }
