@@ -35,14 +35,10 @@ typedef vector<vi> vii;
 
 #define MAXN 200005
 
-int A[MAXN] = { 0 }, B[MAXN] = { 0 };
+int A[MAXN] = { 0 };
 int N, Q, a, b, c, d, t, sqrt_n;
 
 vii buckets;
-
-void update(int X)
-{
-}
 
 int main()
 {
