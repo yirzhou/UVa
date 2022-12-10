@@ -58,15 +58,6 @@ vi hierholzer(int s)
     return ans;
 }
 
-void dfs(int u)
-{
-    if (V[u])
-        return;
-    V[u] = 1;
-    for (auto& v : G[u])
-        dfs(v);
-}
-
 int main()
 {
     fastio;
