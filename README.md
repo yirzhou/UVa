@@ -9,6 +9,7 @@ cp3
 - [UVa 10191](https://vjudge.net/problem/UVA-10181)
 - [UVa 1098](https://vjudge.net/problem/UVA-1098)
 - [Kattis - Robots on a Grid](https://vjudge.net/problem/Kattis-robotsonagrid)
+- [Kattis - Intercept](https://vjudge.net/problem/Kattis-intercept)
 
 ## 2 Need Revision
 
