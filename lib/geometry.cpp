@@ -1,4 +1,28 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <assert.h>
+#include <bitset>
+#include <deque>
+#include <functional>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <map>
+#include <math.h>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <string>
+#include <time.h>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -467,4 +491,14 @@ bool inPolygon(point pt, const vector<point>& P)
     }
 
     return fabs(fabs(sum) - 2 * M_PI) < EPS;
+}
+
+double gc_distance(double plat, double plong, double qlat, double qlong, double radius)
+{
+    plat *= M_PI / 180;
+    plong *= M_PI / 180;
+    qlat *= M_PI / 180;
+    qlong *= M_PI / 180;
+
+    return radius * acos(cos(plat) * cos(plong) * cos(qlat) * cos(qlong) + cos(plat) * sin(plong) * cos(qlat) * sin(qlong) + sin(plat) * sin(qlat));
 }

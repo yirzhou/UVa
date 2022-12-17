@@ -10,6 +10,7 @@ cp3
 - [UVa 1098](https://vjudge.net/problem/UVA-1098)
 - [Kattis - Robots on a Grid](https://vjudge.net/problem/Kattis-robotsonagrid)
 - [Kattis - Intercept](https://vjudge.net/problem/Kattis-intercept)
+- [UVa 535](https://vjudge.net/problem/UVA-535) (really strange WA status with all test cases passed)
 
 ## 2 Need Revision
 
