@@ -58,11 +58,46 @@ typedef long double ld;
 typedef vector<ll> vll;
 typedef vector<vi> vii;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+int A[10005];
+int n, sum;
+
+void solve()
+{
+    int mindiff = INT_MAX;
+    sort(A, A + n);
+
+    int a, b;
+
+    int l = 0, r = n - 1;
+    while (l < r) {
+        int s = A[l] + A[r];
+        if (s == sum) {
+            if (abs(A[l] - A[r]) < mindiff)
+                mindiff = abs(A[l] - A[r]), a = A[l], b = A[r];
+            l++, r--;
+            while (l < r && A[l] == A[l - 1])
+                l++;
+            while (l < r && A[r] == A[r + 1])
+                r--;
+        } else if (s < sum)
+            l++;
+        else
+            r--;
+    }
+
+    printf("Peter should buy books whose prices are %d and %d.\n\n", a, b);
+}
 
 int main()
 {
     fastio;
+
+    while (si(n) != EOF) {
+        for (int i = 0; i < n; ++i)
+            si(A[i]);
+        si(sum);
+        solve();
+    }
 
     return 0;
 }
