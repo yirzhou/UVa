@@ -133,8 +133,7 @@ void print_header(char type, int rows, int cols)
     cout << rows;
     for (int i = 0; i < 4 - b2; ++i)
         cout << ' ';
-    cout << cols;
-    cout << endl;
+    cout << cols << endl;
 }
 
 int main()
