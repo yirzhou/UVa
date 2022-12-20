@@ -95,7 +95,8 @@ void f1(int r1, int c1, int r2, int c2)
         return;
     }
     res.pb('D');
-    int rl = rows % 2 ? rows / 2 + 1 : rows / 2, cl = cols % 2 ? cols / 2 + 1 : cols / 2;
+    int rl = rows % 2 ? rows / 2 + 1 : rows / 2,
+        cl = cols % 2 ? cols / 2 + 1 : cols / 2;
     f1(r1, c1, r1 + rl - 1, c1 + cl - 1);
     f1(r1, c1 + cl, r1 + rl - 1, c2);
     f1(r1 + rl, c1, r2, c1 + cl - 1);
@@ -111,7 +112,8 @@ void f2(int r1, int c1, int r2, int c2)
         return;
     char sym = s[ptr++];
     if (sym == 'D') {
-        int rl = rows % 2 ? rows / 2 + 1 : rows / 2, cl = cols % 2 ? cols / 2 + 1 : cols / 2;
+        int rl = rows % 2 ? rows / 2 + 1 : rows / 2,
+            cl = cols % 2 ? cols / 2 + 1 : cols / 2;
         f2(r1, c1, r1 + rl - 1, c1 + cl - 1);
         f2(r1, c1 + cl, r1 + rl - 1, c2);
         f2(r1 + rl, c1, r2, c1 + cl - 1);
