@@ -58,50 +58,49 @@ typedef long double ld;
 typedef vector<ll> vll;
 typedef vector<vi> vii;
 
-int dp[1 << 12];
+int n;
+vi A;
+
+int dp[1 << 15];
+
+int test(int mask, int i)
+{
+    return ((mask >> (n - i - 1)) & 1) == 0;
+}
 
 int f(int mask)
 {
     if (dp[mask] != -1)
         return dp[mask];
-    int count = 0;
-    for (int i = 0; i <= 11; ++i)
-        if ((mask >> i) & 1)
-            count++;
-
-    int a, b, c;
-    for (int i = 9; i >= 0; --i) {
-        a = (mask >> (12 - i - 1)) & 1, b = (mask >> (12 - i - 2)) & 1, c = (mask >> (12 - i - 3)) & 1;
-
-        if (!a && b && c) {
-            count = min(count, f(((mask | (1 << (12 - i - 1))) ^ (1 << (12 - i - 2))) ^ (1 << (12 - i - 3))));
-        }
-
-        if (!c && a && b) {
-            count = min(count, f(((mask | (1 << (12 - i - 3))) ^ (1 << (12 - i - 2))) ^ (1 << (12 - i - 1))));
+    int ans = 0;
+    for (int i = 0; i < n - 2; ++i) {
+        for (int j = i + 1; j < n - 1; ++j) {
+            for (int k = j + 1; k < n; ++k) {
+                if (test(mask, i) && test(mask, j) && test(mask, k) && A[i] + A[j] + A[k] >= 20)
+                    ans = max(ans, 1 + f(mask | (1 << (n - i - 1)) | (1 << (n - j - 1)) | (1 << (n - k - 1))));
+            }
         }
     }
 
-    return dp[mask] = count;
+    return dp[mask] = ans;
 }
 
 int main()
 {
     fastio;
-    int n;
-    cin >> n;
-    while (n--) {
-        char c;
-        int mask = 0;
-        memset(dp, -1, sizeof dp);
-        for (int i = 11; i >= 0; --i) {
-            cin >> c;
-            if (c == 'o')
-                mask |= (1 << i);
-        }
 
-        int res = f(mask);
+    int caseno = 1;
+    while (cin >> n && n) {
+        memset(dp, -1, sizeof dp);
+        cout << "Case " << caseno++ << ": ";
+        A.assign(n, 0);
+        for (int i = 0; i < n; ++i)
+            cin >> A[i];
+        sort(ALL(A));
+
+        int res = f(0);
         cout << res << endl;
     }
+
     return 0;
 }
