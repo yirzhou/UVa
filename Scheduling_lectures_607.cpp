@@ -50,25 +50,26 @@ using namespace std;
     cout << fixed;   \
     cout.precision(a)
 
-typedef vector<int> vi;
-typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
+typedef vector<int> vi;
+typedef pair<int, int> ii;
+typedef pair<ll, ll> pll;
 typedef vector<ll> vll;
 typedef vector<vi> vii;
 
-int n, l, c;
-vi T;
+ll n, l, c;
+vll T;
 
-vector<vector<ii>> memo;
+vector<vector<pll>> memo;
 
-int di(int t)
+ll di(ll t)
 {
     return t == 0 ? 0 : (t >= 1 && t <= 10 ? -c : (t - 10) * (t - 10));
 }
 
-void update1(ii& res, int& minlect, int& minDI, int DI)
+void update1(pll& res, ll& minlect, ll& minDI, ll DI)
 {
     if (res.fi < minlect)
         minlect = res.fi, minDI = DI + res.se;
@@ -76,7 +77,7 @@ void update1(ii& res, int& minlect, int& minDI, int DI)
         minDI = min(minDI, DI + res.se);
 }
 
-void update2(ii& res, int& minlect, int& minDI, int DI)
+void update2(pll& res, ll& minlect, ll& minDI, ll DI)
 {
     if (1 + res.fi < minlect)
         minlect = 1 + res.fi, minDI = DI + res.se;
@@ -84,25 +85,25 @@ void update2(ii& res, int& minlect, int& minDI, int DI)
         minDI = min(minDI, DI + res.se);
 }
 
-ii dp(int i, int curt)
+pll dp(int i, ll curt)
 {
     if (memo[i][curt].fi != -1)
         return memo[i][curt];
     if (i == n)
         return memo[i][curt] = { 0, di(curt) };
 
-    int minlect = INT_MAX, minDI = INT_MAX;
+    ll minlect = INT_MAX, minDI = INT_MAX;
     int tleft = curt - T[i];
     // Put into current
     if (tleft >= 0) {
-        ii res = dp(i + 1, tleft);
+        pll res = dp(i + 1, tleft);
         update1(res, minlect, minDI, 0);
     }
 
     // Put into a new lec
     // End the current
     int DI = di(curt);
-    ii res = dp(i + 1, l - T[i]);
+    pll res = dp(i + 1, l - T[i]);
     update2(res, minlect, minDI, DI);
 
     return memo[i][curt] = { minlect, minDI };
@@ -113,16 +114,17 @@ int main()
     fastio;
     int caseno = 1;
     while (cin >> n && n) {
+        if (caseno > 1)
+            cout << endl;
         T.assign(n, 0);
-        memo = vector<vector<ii>>(n + 1, vector<ii>(l + 1, { -1, -1 }));
+        memo = vector<vector<pll>>(n + 1, vector<pll>(l + 1, { -1, -1 }));
         cin >> l >> c;
-        for (int i = 0; i < n; ++i)
+        for (int i = 0; i < (int)n; ++i)
             cin >> T[i];
-        ii res = dp(0, l);
+        pll res = dp(0, l);
         cout << "Case " << caseno++ << ":\n";
         cout << "Minimum number of lectures: " << 1 + res.fi << endl;
         cout << "Total dissatisfaction index: " << res.se << endl;
-        cout << endl;
     }
 
     return 0;
