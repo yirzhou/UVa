@@ -87,6 +87,9 @@ void update2(pll& res, ll& minlect, ll& minDI, ll DI)
 
 pll dp(int i, ll curt)
 {
+    if (curt < 0)
+        return { INT_MAX, INT_MAX };
+
     if (memo[i][curt].fi != -1)
         return memo[i][curt];
     if (i == n)
@@ -117,8 +120,8 @@ int main()
         if (caseno > 1)
             cout << endl;
         T.assign(n, 0);
-        memo = vector<vector<pll>>(n + 1, vector<pll>(l + 1, { -1, -1 }));
         cin >> l >> c;
+        memo.assign(n + 1, vector<pll>(l + 1, make_pair(-1, -1)));
         for (int i = 0; i < (int)n; ++i)
             cin >> T[i];
         pll res = dp(0, l);
