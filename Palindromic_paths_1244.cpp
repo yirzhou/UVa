@@ -74,12 +74,6 @@ string dp(int i, int j)
         return memo[i][j] = "";
     }
 
-    if (i + 1 == j) {
-        V[i][j] = 1;
-        ans += AL[i][j];
-        return memo[i][j] = ans;
-    }
-
     int maxlen = 1;
     ans = AL[i][j];
 
