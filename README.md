@@ -1,4 +1,5 @@
 # UVa
+
 cp3
 
 ## 1 Unfinished
@@ -21,6 +22,7 @@ cp3
 - [UVa 10029](https://vjudge.net/problem/UVA-10029)
 - [Kattis - (un)Fair Play](https://open.kattis.com/problems/unfairplay)
 - [UVa 882](https://vjudge.net/problem/UVA-882)
+- [UVa 10032](https://vjudge.net/problem/UVA-10032)
 
 ### 2.2 Topics
 
