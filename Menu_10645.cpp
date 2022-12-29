@@ -67,9 +67,6 @@ int k, n, m;
 int costs[MAXN], benefits[MAXN];
 
 double dp1[25][105][MAXN][4], dp2[25][105][MAXN][4];
-
-int K[55][25];
-
 int trace[25][105][MAXN][4];
 
 dd dp(int i, int budget, int p, int pcount)
@@ -97,9 +94,9 @@ dd dp(int i, int budget, int p, int pcount)
                                                                                    : (double)benefits[d] + res.fi;
         total_cost = costs[d] + res.se;
         if (total_benefit > max_benefit)
-            max_benefit = total_benefit, min_cost = total_cost, K[p][i] = d, trace[i][budget][p][pcount] = d;
+            max_benefit = total_benefit, min_cost = total_cost, trace[i][budget][p][pcount] = d;
         else if (total_benefit == max_benefit && total_cost < min_cost)
-            min_cost = total_cost, K[p][i] = d, trace[i][budget][p][pcount] = d;
+            min_cost = total_cost, trace[i][budget][p][pcount] = d;
     }
 
     return { dp1[i][budget][p][pcount] = max_benefit, dp2[i][budget][p][pcount] = min_cost };
