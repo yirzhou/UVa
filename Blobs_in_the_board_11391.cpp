@@ -119,10 +119,8 @@ int dp(int mask, int k)
                         cmask ^= (1 << (i * c + j));
                         // unmark middle
                         cmask ^= (1 << (ni * c + nj));
-
                         // mark dest
                         cmask |= (1 << (nni * c + nnj));
-
                         ans += dp(cmask, k - 1);
                     }
                 }
