@@ -27,15 +27,12 @@ class Solution:
         right = [0] * n
 
         for i, num in enumerate(nums):
-            idx = l1.bisect_left(num)
-            left[i] = idx
-            # print(i, num, idx)
+            left[i] = l1.bisect_left(num)
             l1.add(num)
 
         for i in range(n - 1, -1, -1):
             num = nums[i]
-            idx = l2.bisect_left(num)
-            right[i] = idx
+            right[i] = l2.bisect_left(num)
             l2.add(num)
 
         for i in range(n):
