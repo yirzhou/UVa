@@ -97,47 +97,15 @@ The height of a tree is the number of edges in the longest simple path from the 
 class Solution {
 public:
     unordered_map<int, ii> G, H;
-    unordered_map<int, int> parent, dist_from_root, dist_to_leaf, is_left, ans;
+    unordered_map<int, int> dist_to_leaf, ans;
 
-    // Get parent and child
-    void dfs1(TreeNode* root)
-    {
-        int val = root->val;
-        if (root->left)
-            parent[root->left->val] = val, G[val].fi = root->left->val, dfs1(root->left);
-        else
-            G[val].fi = 0;
-
-        if (root->right)
-            parent[root->right->val] = val, G[val].se = root->right->val, dfs1(root->right);
-        else
-            G[val].se = 0;
-    }
-
-    int dfs2(TreeNode* root, int d, int l)
+    int dfs2(TreeNode* root, int d)
     {
         if (!root)
             return -1;
-
-        dist_from_root[root->val] = d;
-        is_left[root->val] = l;
-        int ans = max(root->left ? 1 + dfs2(root->left, d + 1, l) : 0, root->right ? 1 + dfs2(root->right, d + 1, l) : 0);
+        int ans = max(root->left ? 1 + dfs2(root->left, d + 1) : 0, root->right ? 1 + dfs2(root->right, d + 1) : 0);
         dist_to_leaf[root->val] = ans;
         return ans;
-    }
-
-    void dfs3(TreeNode* root)
-    {
-        int val = root->val;
-        if (root->left)
-            H[val].fi = dist_to_leaf[root->left->val], dfs3(root->left);
-        else
-            H[val].fi = -1;
-
-        if (root->right)
-            H[val].se = dist_to_leaf[root->right->val], dfs3(root->right);
-        else
-            H[val].se = -1;
     }
 
     void solve(TreeNode* root)
@@ -179,8 +147,7 @@ public:
 
     vector<int> treeQueries(TreeNode* root, vector<int>& queries)
     {
-        dfs1(root);
-        int h = max(dfs2(root->left, 1, 1), dfs2(root->right, 1, 0));
+        int h = max(dfs2(root->left, 1), dfs2(root->right, 1));
         dist_to_leaf[root->val] = h + 1;
 
         solve(root);
