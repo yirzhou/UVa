@@ -103,7 +103,7 @@ public:
         while (lo < hi) {
             ll mid = lo + (hi - lo) / 2;
             ll res = count(A1, B1, mid) + count(A2, B2, mid);
-            if (res >= k)
+            if (res >= k) // 若有k个比mid小, 说明当前mid是第k+1个，不符合，因此 hi = mid
                 hi = mid;
             else
                 lo = mid + 1;
