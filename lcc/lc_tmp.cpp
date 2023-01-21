@@ -56,6 +56,6 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
 typedef vector<ll> vll;
-typedef vector<vi> vii;
+typedef vector<vi> vvi;
 
 ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
