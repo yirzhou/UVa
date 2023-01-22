@@ -66,10 +66,10 @@ public:
     }
     bool isReachable(int targetX, int targetY)
     {
-        while (targetX % 2 == 0)
-            targetX /= 2;
-        while (targetY % 2 == 0)
-            targetY /= 2;
-        return gcd(targetX, targetY) == 1;
+        int g = gcd(targetX, targetY);
+        int cnt = 0;
+        while (g > 0)
+            cnt += (g & 1), g >>= 1;
+        return cnt == 1;
     }
 };
