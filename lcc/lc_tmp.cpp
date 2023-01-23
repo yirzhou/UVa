@@ -55,8 +55,8 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
-typedef vector<ll> vll;
-typedef vector<vll> vvl;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
 ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
