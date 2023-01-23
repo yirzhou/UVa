@@ -60,3 +60,46 @@ typedef vector<vll> vvl;
 typedef vector<vi> vvi;
 
 ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
+/*
+In a town, there are n people labeled from 1 to n. There is a rumor that one of these people is secretly the town judge.
+
+If the town judge exists, then:
+
+1. The town judge trusts nobody.
+2. Everybody (except for the town judge) trusts the town judge.
+
+There is exactly one person that satisfies properties 1 and 2.
+You are given an array trust where trust[i] = [ai, bi] representing that the person labeled ai trusts the person labeled bi.
+
+Return the label of the town judge if the town judge exists and can be identified, or return -1 otherwise.
+
+Input: n = 2, trust = [[1,2]]
+Output: 2
+
+Input: n = 3, trust = [[1,3],[2,3]]
+Output: 3
+
+Input: n = 3, trust = [[1,3],[2,3],[3,1]]
+Output: -1
+*/
+
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust)
+    {
+        vi ind(n + 1, 0), outd(n + 1, 0);
+        for (auto& e : trust) {
+            int u = e[0], v = e[1];
+            outd[u]++, ind[v]++;
+        }
+
+        int res = -1, cnt = 0;
+        for (int u = 1; u <= n; ++u) {
+            if (outd[u] == 0 && ind[u] == n - 1)
+                res = u, cnt++;
+        }
+
+        return cnt == 1 ? res : -1;
+    }
+};
