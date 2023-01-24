@@ -109,7 +109,6 @@ public:
         bs[0] = bs[1] = 0;
         for (ll i = 2; i <= _sieve_size; ++i) {
             if (bs[i]) {
-                // add(i, i);
                 for (ll j = i; j <= _sieve_size; j += i)
                     add(i, j), bs[j] = 0;
                 primes.pb((int)i);
