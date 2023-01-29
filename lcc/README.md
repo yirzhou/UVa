@@ -1,6 +1,6 @@
 # Random Problems
 
-## Notes
+## Need Revision
 
 - [2366]: Given a number `k` and a larger number `n`, if we want to divide `n` into as fewest pieces as possible with the smallest one as large as possible, there will be `p = ceil(n/k)` pieces, and the smallest piece will be `floor(n/p)`.
 - [2213]: Require a Segment Tree with point update.
@@ -10,3 +10,7 @@
 - [2003]: The key is to start with the node where `nums[node]==1` and then to its parent.
 - [2551]: The first and the end are always included, so no need to worry about them; it can be seen as selecting `k-1` values of `nums[i] + nums[i+1]`.
 - [2552]: Fixed range + unique elements => perfect scenario for a Fenwick Tree.
+
+## Unsolved
+
+- [1977]: It requires: 1) O(1) substring comparison; 2) Prefix sum.
