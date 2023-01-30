@@ -11,6 +11,7 @@
 - [2551]: The first and the end are always included, so no need to worry about them; it can be seen as selecting `k-1` values of `nums[i] + nums[i+1]`.
 - [2552]: Fixed range + unique elements => perfect scenario for a Fenwick Tree.
 - [1960]: I got Manacher's Algorithm, and the cumulative maximum palindrome lengths; _However, for `m[i]`, it is at least `m[i+1]-2`. E.g., for a string `abayab`, `a[5] = 5; a[4] = 3`_.
+- [1948]: Initially I was trying to reverse-insert the paths into a trie, then clear all children of a node if the number of its children exceeds 1 - this is wrong as it doesn't identify identical subtrees. I forgot using post-order DFS to encode subtrees (see pg. 503 of CP3).
 
 ## Unsolved
 
