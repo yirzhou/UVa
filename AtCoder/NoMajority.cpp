@@ -55,14 +55,17 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
-typedef vector<ll> vl;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
+typedef vector<ll> vll;
+typedef vector<vi> vii;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+int n;
+string s;
+const ll MOD = 998244353;
+
 int main() {
     fastio;
-
-    return 0;
+    cin >> n;
+    cin >> s;
 }

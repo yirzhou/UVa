@@ -55,14 +55,63 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
-typedef vector<ll> vl;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
+typedef vector<ll> vll;
+typedef vector<vi> vii;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+int h, w, q, a, b;
+
+void print(vector<vector<char>> &A) {
+    for (int i = 0; i < h; ++i) {
+        for (int j = 0; j < w; ++j)
+            cout << A[i][j];
+        cout << endl;
+    }
+}
+
+int rotate_x(int pos, int x, int len) { return (pos - x + len) % len; }
+
+int rotate_len_minus_x(int pos, int x, int len) {
+    return (pos - (len - x) + len) % len;
+}
+
 int main() {
     fastio;
+    cin >> h >> w;
+    vector<vector<char>> A = vector<vector<char>>(h, vector<char>(w));
 
+    for (int i = 0; i < h; ++i)
+        for (int j = 0; j < w; ++j)
+            cin >> A[i][j];
+
+    cin >> q;
+
+    int r = 0, c = 0;
+    for (int i = 1; i <= q; ++i) {
+        cin >> a >> b;
+        // odd => rotate x
+        if (i % 2 == 1) {
+            r = rotate_x(r, a, h), c = rotate_x(c, b, w);
+        } else {
+            // even => rotate len-x
+            r = rotate_len_minus_x(r, a, h), c = rotate_len_minus_x(c, b, w);
+        }
+    }
+
+    vector<vector<char>> B(h, vector<char>(w));
+
+    for (int i = 0; i < h; ++i) {
+        for (int j = 0; j < w; ++j) {
+            // odd => reverse
+            int ni = (i + r + h) % h, nj = (j + c + w) % w;
+            if (q % 2 == 0) {
+                B[ni][nj] = A[i][j];
+            } else {
+                B[h - ni - 1][w - nj - 1] = A[i][j];
+            }
+        }
+    }
+    print(B);
     return 0;
 }
