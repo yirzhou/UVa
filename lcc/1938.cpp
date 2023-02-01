@@ -130,13 +130,11 @@ class Solution {
     }
 
     Node *traverse(Node *root, int val, int i) {
-
         piii(val, i, root->bit);
         if (i == -1) {
             return root;
         }
         int b = ((val >> i) & 1);
-
         return traverse(root->children[b], val, i - 1);
     }
 
@@ -149,9 +147,7 @@ class Solution {
         }
 
         int b = ((val >> i) & 1);
-
         root->children[b] = remove(root->children[b], val, i - 1);
-
         if (leaf(root)) {
             delete root;
             root = NULL;
@@ -185,9 +181,7 @@ class Solution {
             else
                 AL[parents[u]].pb(u);
         }
-
         dfs(rootval);
-
         return ans;
     }
 };
