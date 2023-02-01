@@ -259,7 +259,7 @@ cython_debug/
 poetry.toml
 
 ### Test file ###
-test.txt
+*.txt
 
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,c++,java,python
