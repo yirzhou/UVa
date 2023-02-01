@@ -96,14 +96,6 @@ class Solution {
         roots.erase(val);
     }
 
-    bool check(int val) {
-        TreeNode *node = roots[val];
-        if ((node->left && !roots.count(node->left->val)) ||
-            (node->right && !roots.count(node->right->val)))
-            return 0;
-        return 1;
-    }
-
     int count(TreeNode *root) {
         if (!root) return 0;
         return 1 + count(root->left) + count(root->right);
@@ -123,9 +115,8 @@ class Solution {
         for (auto &[val, f] : cnt)
             if (f > 1) return NULL;
 
-        for (auto &[val, p] : leaves) {
-            if (roots.count(val)) { connect(p, val); }
-        }
+        for (auto &[val, p] : leaves)
+            if (roots.count(val)) connect(p, val);
 
         if (roots.size() != 1) return NULL;
         TreeNode *root;
