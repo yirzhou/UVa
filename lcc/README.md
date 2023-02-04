@@ -12,6 +12,8 @@
 - [2552]: Fixed range + unique elements => perfect scenario for a Fenwick Tree.
 - [1960]: I got Manacher's Algorithm, and the cumulative maximum palindrome lengths; _However, for `m[i]`, it is at least `m[i+1]-2`. E.g., for a string `abayab`, `a[5] = 5; a[4] = 3`_.
 - [1948]: Initially I was trying to reverse-insert the paths into a trie, then clear all children of a node if the number of its children exceeds 1 - this is wrong as it doesn't identify identical subtrees. I forgot using post-order DFS to encode subtrees (see pg. 503 of CP3).
+- [2555]: Viewed as selecting two non-overlapping intervals (using DP with `k=2` as upperbound).
+- [2556]: See notes about things that I tried; the key point is to traverse the tree while trying to find if there is only one point that we can go. If that's the case, return `true`.
 
 ## Unsolved
 
