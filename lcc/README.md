@@ -20,4 +20,5 @@
 
 ## Unsolved
 
+- [1923]: Rolling hash is too weird.
 - [1977]: It requires: 1) O(1) substring comparison; 2) Prefix sum.
