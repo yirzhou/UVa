@@ -16,6 +16,7 @@
 - [2556]: See notes about things that I tried; the key point is to traverse the tree while trying to find if there is only one point that we can go. If that's the case, return `true`.
 - [2560]: Binary search...
 - [2561]: Swap twice with the minimum element, or directly swap.
+- [2444]: Key point is `min(mini, maxi)-i+1`.
 
 ## Unsolved
 
