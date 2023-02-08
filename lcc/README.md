@@ -18,6 +18,10 @@
 - [2561]: Swap twice with the minimum element, or directly swap.
 - [2444]: Key point is `min(mini, maxi)-i+1`.
 
+## Binary Search
+
+- [1648]: The monotonic function is tricky to find: find a value `k` and try to sum up all values above k.
+
 ## Unsolved
 
 - [1923]: Rolling hash is too weird.
