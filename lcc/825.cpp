@@ -71,7 +71,6 @@ class Solution {
         for (int i = 1; i <= 120; ++i) {
             if (mp[i] == 0) continue;
             if (check(i, i)) ans += mp[i] * (mp[i] - 1);
-            // Second rule
             for (int j = 1; j < i; ++j) {
                 if (mp[j] == 0) continue;
                 if (check(i, j) && !(j > 100 && i < 100)) ans += mp[i] * mp[j];
