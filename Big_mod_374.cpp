@@ -16,27 +16,22 @@ typedef pair<int, int> ii;
 typedef long long ll;
 typedef vector<ll> vll;
 
-template <typename T>
-T modpow(T base, T exp, T M)
-{
+template <typename T> T modpow(T base, T exp, T M) {
     base %= M;
     T result = 1;
     while (exp > 0) {
-        if (exp & 1)
-            result = (result * base) % M;
+        if (exp & 1) result = (result * base) % M;
         base = (base * base) % M;
         exp >>= 1;
     }
     return result;
 }
 
-int main()
-{
+int main() {
     ll B, P, M;
     string s;
     while (cin >> B >> P >> M) {
-        if (M == 1)
-            cout << 0 << endl;
+        if (M == 1) cout << 0 << endl;
         else {
             ll res = modpow<ll>(B, P, M);
             cout << res << endl;

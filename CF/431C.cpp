@@ -34,7 +34,6 @@ using namespace std;
 #define pb push_back
 #define fi first
 #define se second
-#define MOD 1000000007
 
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
@@ -61,3 +60,12 @@ typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+int main() {
+    fastio;
+
+    int n, k, d;
+    cin >> n >> k >> d;
+
+    return 0;
+}

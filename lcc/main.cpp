@@ -1,4 +1,4 @@
-#include "1482.cpp"
+#include "1259.cpp"
 
 void print(vi &res) {
     cout << "[" << res[0];
@@ -7,12 +7,11 @@ void print(vi &res) {
 }
 
 int main() {
-    int t, n, m, k;
+    int t, n;
     cin >> t;
     while (t--) {
-        cin >> n >> m >> k;
-        vi nums(n);
-        for (int i = 0; i < n; ++i) cin >> nums[i];
-        cout << Solution().minDays(nums, m, k) << endl;
+        cin >> n;
+
+        cout << Solution().numberOfWays(n) << endl;
     }
 }

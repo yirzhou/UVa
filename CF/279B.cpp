@@ -34,7 +34,6 @@ using namespace std;
 #define pb push_back
 #define fi first
 #define se second
-#define MOD 1000000007
 
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
@@ -60,4 +59,25 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+vi nums;
+int n, t;
+
+int solve() {
+    int res = 0, i = 0;
+    for (int j = 0; j < n; ++j) {
+        t -= nums[j];
+        while (t < 0) t += nums[i++];
+        res = max(res, j - i + 1);
+    }
+
+    return res;
+}
+
+int main() {
+    fastio;
+    cin >> n >> t;
+    nums.assign(n, 0);
+    for (int i = 0; i < n; ++i) cin >> nums[i];
+    cout << solve() << endl;
+    return 0;
+}
