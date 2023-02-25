@@ -59,13 +59,26 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+const int MOD = 1e9 + 7;
+
+int N, K, D;
+
+int memo[105][2];
+
+int dp(int n, bool d) {
+    if (n == 0) return d;
+    if (n < 0) return 0;
+    if (memo[n][d] != -1) return memo[n][d];
+    int ans = 0;
+    for (int i = 1; i <= K; ++i) ans = (ans + dp(n - i, d | (i >= D))) % MOD;
+    return memo[n][d] = ans;
+}
 
 int main() {
     fastio;
 
-    int n, k, d;
-    cin >> n >> k >> d;
-
+    cin >> N >> K >> D;
+    memset(memo, -1, sizeof memo);
+    cout << dp(N, 0) << endl;
     return 0;
 }
