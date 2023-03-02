@@ -20,3 +20,4 @@ My solutions to some CF problems.
 - **1526C** (very simple and beautiful solution in the end)
 - 1358C (draw the diagram and figure out paths where the current path is longer by 1 than its previous path)
 - 1334C (think about the additional bullets required if we do NOT kill its previous one)
+- 235A (intuition is to iterate all triplets within [n-50,n])
