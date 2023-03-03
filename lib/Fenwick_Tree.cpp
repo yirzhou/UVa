@@ -100,7 +100,7 @@ class FenwickTree {
 
     int select(ll k) {
         int lo = 1, hi = ft.size() - 1;
-        for (int i = -0; i < 30; ++i) {
+        for (int i = 0; i < 30; ++i) {
             int mid = (lo + hi) / 2;
             (rsq(1, mid) < k) ? lo = mid : hi = mid;
         }
