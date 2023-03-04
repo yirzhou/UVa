@@ -8,6 +8,7 @@ My solutions to some CF problems.
 
 - [x] 1389B
 - [x] 706C
+- [x] 1396A
 
 ### 03/02/2023
 
@@ -39,3 +40,4 @@ My solutions to some CF problems.
 - 235A (intuition is to iterate all triplets within [n-50,n])
 - 1497C1 (odd, n%2 but n%4 != 0, and n%2 and n%4 == 0)
 - 1389B (was on the right idea - the maximum pair part is tricky: `mp[i]` can also be `nums[i]+nums[i+1]`)
+- 1396A (the trick is to realize that the first number can be added with 0)
