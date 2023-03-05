@@ -4,6 +4,11 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/04/2023
+
+- [x] 1373D
+- [x] 1348C
+
 ### 03/03/2023
 
 - [x] 1389B
@@ -41,3 +46,4 @@ My solutions to some CF problems.
 - 1497C1 (odd, n%2 but n%4 != 0, and n%2 and n%4 == 0)
 - 1389B (was on the right idea - the maximum pair part is tricky: `mp[i]` can also be `nums[i]+nums[i+1]`)
 - 1396A (the trick is to realize that the first number can be added with 0)
+- 1348A (three cases, greedy)
