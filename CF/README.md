@@ -4,6 +4,11 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/05/2023
+
+- [x] 1458A
+- [x] 1342C
+
 ### 03/04/2023
 
 - [x] 1373D
@@ -47,3 +52,5 @@ My solutions to some CF problems.
 - 1389B (was on the right idea - the maximum pair part is tricky: `mp[i]` can also be `nums[i]+nums[i+1]`)
 - 1396A (the trick is to realize that the first number can be added with 0)
 - 1348A (three cases, greedy)
+- 1458A (solved on my own after knowing `gcd(x,y) == gcd(x-y,y)`)
+- 1342C (solved on my own after knowing `(x % a) % b == [(ab + x)% a] % b`)
