@@ -53,4 +53,4 @@ My solutions to some CF problems.
 - 1396A (the trick is to realize that the first number can be added with 0)
 - 1348A (three cases, greedy)
 - 1458A (solved on my own after knowing `gcd(x,y) == gcd(x-y,y)`)
-- 1342C (solved on my own after knowing `(x % a) % b == [(ab + x)% a] % b`)
+- 1342C (solved on my own after knowing `(x % a) % b == [(ab + x)% a] % b`; given the small constraints on `a` and `b`, we only test numbers within `[0, ab-1]`)
