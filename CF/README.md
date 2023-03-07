@@ -4,6 +4,11 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/06/2023
+
+- [x] 510C
+- [x] 1519D
+
 ### 03/05/2023
 
 - [x] 1458A
@@ -54,3 +59,8 @@ My solutions to some CF problems.
 - 1348A (three cases, greedy)
 - 1458A (solved on my own after knowing `gcd(x,y) == gcd(x-y,y)`)
 - 1342C (solved on my own after knowing `(x % a) % b == [(ab + x)% a] % b`; given the small constraints on `a` and `b`, we only test numbers within `[0, ab-1]`)
+
+### 03/18/2023
+
+- 510C (almost solved it but I neglected a corner case)
+- 1519D (expand from the center)
