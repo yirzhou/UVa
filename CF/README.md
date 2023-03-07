@@ -4,6 +4,10 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/07/2023
+
+- [x] 1165D
+
 ### 03/06/2023
 
 - [x] 510C
@@ -64,3 +68,4 @@ My solutions to some CF problems.
 
 - 510C (almost solved it but I neglected a corner case)
 - 1519D (expand from the center)
+- 1165D (my initial approach was similar: computing the LCM of all, and check if number of divisors is the same as array length; the key is to realize `x = nums[0] * nums[n-1]`)
