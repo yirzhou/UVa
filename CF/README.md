@@ -4,9 +4,23 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/10/2023
+
+- [x] 1234D
+
+### 03/09/2023
+
+- [x] 1327C
+- [x] 1395C
+
+### 03/08/2023
+
+Busy with a problem at work.
+
 ### 03/07/2023
 
 - [x] 1165D
+- [x] 1374E1
 
 ### 03/06/2023
 
@@ -69,3 +83,6 @@ My solutions to some CF problems.
 - 510C (almost solved it but I neglected a corner case)
 - 1519D (expand from the center)
 - 1165D (my initial approach was similar: computing the LCM of all, and check if number of divisors is the same as array length; the key is to realize `x = nums[0] * nums[n-1]`)
+- 1374E1 (actually easy - just greedy)
+- 1327C (ridiculous problem - bounded by the `2nm` which implies that it is always possible; snake-like traversal)
+- 1395C (just do complete search given the low constraint `2^9`)
