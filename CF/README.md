@@ -2,6 +2,12 @@
 
 My solutions to some CF problems.
 
+## Weak categories
+
+- [ ] Greedy
+- [ ] Constructive algorithms
+- [ ] Number theory
+
 ## Journal
 
 ### 03/10/2023
