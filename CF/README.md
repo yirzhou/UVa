@@ -12,6 +12,7 @@ My solutions to some CF problems.
 
 ### 03/10/2023
 
+- [x] 1371D
 - [x] 1234D
 
 ### 03/09/2023
@@ -92,3 +93,4 @@ Busy with a problem at work.
 - 1374E1 (actually easy - just greedy)
 - 1327C (ridiculous problem - bounded by the `2nm` which implies that it is always possible; snake-like traversal)
 - 1395C (just do complete search given the low constraint `2^9`)
+- 1371D (think about how to evenly distribute the 1's across all rows and columns)

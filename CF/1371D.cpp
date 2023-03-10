@@ -61,11 +61,39 @@ typedef vector<vi> vvi;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+/*
+removing 1 on a cell decreases R and C by 1 at the same time.
+Draw this diagonally.
+*/
+
 int main() {
     fastio;
     int n, k, t;
     cin >> t;
-    while (t--) { cin >> n >> k; }
+    while (t--) {
+        cin >> n >> k;
+        vvi ans(n, vi(n, 0));
+
+        vi rsum(n, 0), csum(n, 0);
+
+        for (int col = 0; col < n && k > 0; ++col) {
+            int c = col;
+            for (int r = 0; r < n && k > 0; ++r) {
+                rsum[r]++, csum[c % n]++;
+                ans[r][c % n] = 1;
+                k--, c++;
+            }
+        }
+
+        int rmax = *max_element(ALL(rsum)), rmin = *min_element(ALL(rsum)),
+            cmax = *max_element(ALL(csum)), cmin = *min_element(ALL(csum));
+
+        cout << (int)pow((rmax - rmin), 2) + (int)pow((cmax - cmin), 2) << endl;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) cout << ans[i][j];
+            cout << endl;
+        }
+    }
 
     return 0;
 }
