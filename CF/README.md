@@ -10,6 +10,14 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/12/2023
+
+- [x] 1528A
+
+### 03/11/2023
+
+- [x] 1305C
+
 ### 03/10/2023
 
 - [x] 1371D
@@ -94,3 +102,4 @@ Busy with a problem at work.
 - 1327C (ridiculous problem - bounded by the `2nm` which implies that it is always possible; snake-like traversal)
 - 1395C (just do complete search given the low constraint `2^9`)
 - 1371D (think about how to evenly distribute the 1's across all rows and columns)
+- 1305C (the constraints are very tricky - if `n > m` then there must be duplicates, causing the final product to be zero)
