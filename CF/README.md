@@ -10,9 +10,22 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/16/2023
+
+- [] 1295C
+
+### 03/14/2023 - 03/15/2023
+
+Too busy with work + power outage.
+
+### 03/13/2023
+
+- [x] 1364C
+
 ### 03/12/2023
 
 - [x] 1528A
+- [x] 1503A
 
 ### 03/11/2023
 
@@ -103,3 +116,5 @@ Busy with a problem at work.
 - 1395C (just do complete search given the low constraint `2^9`)
 - 1371D (think about how to evenly distribute the 1's across all rows and columns)
 - 1305C (the constraints are very tricky - if `n > m` then there must be duplicates, causing the final product to be zero)
+- 1503A (a beautiful problem that tests my thinking - eventually realize that for all `1`s, we need half of them to be left and the other half to be right, so we construct them first)
+- 1364C (I didn't see `0 <= ai <= i` - _need to come back to this_)
