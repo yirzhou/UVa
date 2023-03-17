@@ -62,14 +62,46 @@ typedef vector<vi> vvi;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+string s, t;
+
 int main() {
     fastio;
-    int t;
-    cin >> t;
-    while (t--) {
-        string s, t;
+    int T;
+    cin >> T;
+    while (T--) {
+        s.clear(), t.clear();
         cin >> s >> t;
-        // append any subsequence of 𝑠 at the end of string 𝑧.
+        int n = s.size();
+        vvi pre(n + 1, vi(26, n + 1));
+        for (int i = n - 1; i >= 0; --i) {
+            char c = s[i];
+            for (int j = 0; j < 26; ++j) pre[i][j] = pre[i + 1][j];
+            pre[i][c - 'a'] = i + 1;
+        }
+
+        bool possible = true;
+        for (auto &c : t)
+            if (pre[0][c - 'a'] == n + 1) {
+                possible = false;
+                break;
+            }
+
+        if (!possible) {
+            cout << -1 << endl;
+            continue;
+        }
+
+        int ans = 1;
+        int i = 0, j = 0;
+        while (i < t.size()) {
+            while (i < t.size() && pre[j][t[i] - 'a'] != n + 1)
+                j = pre[j][t[i++] - 'a'];
+
+            if (i == t.size()) break;
+            ans++, j = 0;
+        }
+
+        cout << ans << endl;
     }
     return 0;
 }
