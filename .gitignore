@@ -261,5 +261,6 @@ poetry.toml
 ### Test file ###
 *.txt
 
+.idea
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,c++,java,python
