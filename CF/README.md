@@ -10,6 +10,16 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/18/2023
+
+- [x] 1603B
+- [x] 446A
+
+### 03/17/2023
+
+- [x] 1527C
+- [x] 1542C
+
 ### 03/16/2023
 
 - [x] 1295C
@@ -22,6 +32,7 @@ Too busy with work + power outage.
 ### 03/13/2023
 
 - [x] 1364C
+- [x] 1514C
 
 ### 03/12/2023
 
@@ -119,3 +130,10 @@ Busy with a problem at work.
 - 1305C (the constraints are very tricky - if `n > m` then there must be duplicates, causing the final product to be zero)
 - 1503A (a beautiful problem that tests my thinking - eventually realize that for all `1`s, we need half of them to be left and the other half to be right, so we construct them first)
 - 1364C (I didn't see `0 <= ai <= i` - _need to come back to this_)
+- 1514C (the sequence cannot contain a coprime)
+
+### 03/31/2023
+
+- 1527C (the key is to compute the sum of prefix sums for a number at an index `i`)
+- 1542C (LCM... check out [this post](https://blog.csdn.net/tkkdouzi/article/details/118877468))
+- 1603B (intuition is to imagine a number line for the case `x <= y`)
