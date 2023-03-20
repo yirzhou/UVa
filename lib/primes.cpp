@@ -15,32 +15,27 @@ typedef long long ll;
 
 #define MAXN 1000010
 
-bitset<INT_MAX> bs;
+bitset<MAXN> bs;
 ll _sieve_size;
 vi primes;
 
-int n;
-
-void sieve(ll upperbound = INT_MAX)
-{
+void sieve(ll upperbound) {
     _sieve_size = upperbound + 1;
     bs.set();
     bs[0] = bs[1] = 0;
     for (ll i = 2; i <= _sieve_size; ++i) {
         if (bs[i]) {
-            for (ll j = i * i; j <= _sieve_size; j += i)
-                bs[j] = 0;
+            for (ll j = i * i; j <= _sieve_size; j += i) bs[j] = 0;
             primes.pb((int)i);
         }
     }
 }
 
-int main()
-{
-    sieve();
+bool is_prime(ll n) {
+    if (n <= _sieve_size) return bs[n];
     for (int i = 0; i < primes.size(); ++i) {
-        if (i)
-            printf(",");
-        printf("%d", primes[i]);
+        if (primes[i] * primes[i] > n) return true;
+        if (n % primes[i] == 0) return false;
     }
+    return true;
 }
