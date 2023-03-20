@@ -67,7 +67,6 @@ bool f(vl &nums, ll days) {
     ll k = days;
     for (int i = n - 1; i >= 0 && days >= 0; --i) {
         ll need = k - nums[i];
-
         days -= need;
     }
 
