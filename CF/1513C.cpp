@@ -64,8 +64,22 @@ ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
 int main() {
     fastio;
-    ll t, n, m;
+    ll t, m;
+    string s;
+    ll dp[200005] = {0};
+    for (int i = 0; i < 9; ++i) dp[i] = 2;
+    dp[9] = 3;
+    for (int i = 10; i <= 200000; ++i) dp[i] = (dp[i - 9] + dp[i - 10]) % MOD;
     cin >> t;
-    while (t--) { cin >> n >> m; }
+    while (t--) {
+        cin >> s >> m;
+        ll ans = 0;
+        for (auto &d : s) {
+            ll cnt = d - '0';
+            ll add = (cnt + m) < 10 ? 1LL : dp[m - 10 + cnt];
+            ans = (ans + add) % MOD;
+        }
+        cout << ans << endl;
+    }
     return 0;
 }

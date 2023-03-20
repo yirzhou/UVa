@@ -10,6 +10,10 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/20/2023
+
+- [x] 1513C
+
 ### 03/19/2023
 
 - [x] 1475E
@@ -144,3 +148,4 @@ Busy with a problem at work.
 - 1542C (LCM... check out [this post](https://blog.csdn.net/tkkdouzi/article/details/118877468))
 - 1603B (intuition is to imagine a number line for the case `x <= y`)
 - 1475E (use 0-1 knapsack at initialization)
+- 1513C (a really tough one - notice if the digit is already `10`, the resulting number of digits after `i` operations)
