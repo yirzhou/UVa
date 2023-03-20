@@ -14,6 +14,7 @@ My solutions to some CF problems.
 
 - [x] 1475E
 - [x] 348A
+- [x] 735D (Goldbach's conjecture)
 
 ### 03/18/2023
 
