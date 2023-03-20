@@ -10,6 +10,11 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/19/2023
+
+- [x] 1475E
+- [x] 348A
+
 ### 03/18/2023
 
 - [x] 1603B
@@ -137,3 +142,4 @@ Busy with a problem at work.
 - 1527C (the key is to compute the sum of prefix sums for a number at an index `i`)
 - 1542C (LCM... check out [this post](https://blog.csdn.net/tkkdouzi/article/details/118877468))
 - 1603B (intuition is to imagine a number line for the case `x <= y`)
+- 1475E (use 0-1 knapsack at initialization)
