@@ -10,6 +10,14 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/21/2023
+
+- [x] 1288C (non-decreasing sequence of `2m`)
+
+### 03/21/2023
+
+- [x] 1303C
+
 ### 03/20/2023
 
 - [x] 1513C
@@ -149,3 +157,4 @@ Busy with a problem at work.
 - 1603B (intuition is to imagine a number line for the case `x <= y`)
 - 1475E (use 0-1 knapsack at initialization)
 - 1513C (a really tough one - notice if the digit is already `10`, the resulting number of digits after `i` operations)
+- 1303C (greedily check `pos+1` and `pos-1`)
