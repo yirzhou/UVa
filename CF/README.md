@@ -10,6 +10,14 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/25/2023
+
+- [x] 1437D
+
+### 03/22/2023 - 03/24/2023
+
+Too busy with work.
+
 ### 03/21/2023
 
 - [x] 1288C (non-decreasing sequence of `2m`)
