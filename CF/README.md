@@ -10,6 +10,10 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 03/26/2023
+
+- [x] _1455D_
+
 ### 03/25/2023
 
 - [x] 1437D
@@ -166,3 +170,7 @@ Busy with a problem at work.
 - 1475E (use 0-1 knapsack at initialization)
 - 1513C (a really tough one - notice if the digit is already `10`, the resulting number of digits after `i` operations)
 - 1303C (greedily check `pos+1` and `pos-1`)
+
+### 04/09/2023
+
+- 1455D (when we see `nums[i] > x` we need to swap; otherwise, we cannot swap it with `nums[j]` where `j>i` as `nums[j]` will become `x` but `nums[i] > x` and it won't be sorted.)
