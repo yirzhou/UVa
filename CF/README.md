@@ -13,6 +13,7 @@ My solutions to some CF problems.
 ### 03/26/2023
 
 - [x] _1455D_
+- [x] 372A
 
 ### 03/25/2023
 
