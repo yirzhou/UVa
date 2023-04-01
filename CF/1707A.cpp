@@ -69,10 +69,30 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-
 int main()
 {
     fastio;
+    int t, n, q;
+    cin >> t;
+    while (t--)
+    {
+        cin >> n >> q;
+        vi nums(n);
+        for (int i = 0; i < n; ++i) cin >> nums[i];
+
+        vi V(n, 0);
+        int Q = 0;
+        for (int i = n - 1; i >= 0; --i)
+        {
+            int a = nums[i];
+            if (a > Q)
+            {
+                if (Q < q) V[i] = 1, Q++;
+            }
+            else { V[i] = 1; }
+        }
+        for (int i = 0; i < n; ++i) cout << V[i];
+        cout << endl;
+    }
     return 0;
 }
