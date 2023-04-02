@@ -10,6 +10,15 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 04/01/2023
+
+- [x] \*1707A (start from the end)
+- [x] 1633D
+
+### 03/27/2023 - 03/31/2023
+
+Too busy with work.
+
 ### 03/26/2023
 
 - [x] _1455D_
