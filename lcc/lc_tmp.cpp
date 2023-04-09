@@ -1,30 +1,4 @@
-#include <algorithm>
-#include <assert.h>
-#include <bitset>
-#include <climits>
-#include <deque>
-#include <functional>
-#include <iostream>
-#include <iterator>
-#include <limits>
-#include <list>
-#include <map>
-#include <math.h>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <string>
-#include <time.h>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 #define oo INT_MAX
@@ -44,11 +18,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                                                                 \
-    ios_base::sync_with_stdio(false);                                          \
+#define fastio                                                                                                         \
+    ios_base::sync_with_stdio(false);                                                                                  \
     cin.tie(0)
-#define precision(a)                                                           \
-    cout << fixed;                                                             \
+#define precision(a)                                                                                                   \
+    cout << fixed;                                                                                                     \
     cout.precision(a)
 
 typedef vector<int> vi;
