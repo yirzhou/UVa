@@ -10,6 +10,20 @@ My solutions to some CF problems.
 
 ## Journal
 
+### 04/09/2023
+
+- [x] 343B (similar to bracket matching - find "++" or "--")
+
+### 04/03/2023 - 04/08/2023
+
+Too busy with work.
+
+### 04/02/2023
+
+- [x] 165C
+- [x] \*1632C (a real tough problem: we only apply 3rd op atmost once)
+- [x] \*1537E1 (must be some prefix repeated for several times)
+
 ### 04/01/2023
 
 - [x] \*1707A (start from the end)
