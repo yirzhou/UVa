@@ -13,6 +13,7 @@ My solutions to some CF problems.
 ### 04/09/2023
 
 - [x] 343B (similar to bracket matching - find "++" or "--")
+- [x] 1294D
 
 ### 04/03/2023 - 04/08/2023
 
