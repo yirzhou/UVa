@@ -15,7 +15,7 @@ My solutions to some CF problems.
 - [x] 343B (similar to bracket matching - find "++" or "--")
 - [x] 1294D
 - [x] 322B (such a weird one: only if `a % 3 == 0 && a >= 3 && b % 3 == 2 && c % 3 == 2` will we add 1)
-- [x] 1251C
+- [x] 1251C (reduced to "given a list of odd digits and a list of even digits, reorganize them so that their relative order doesn't change and the final number is minimised")
 
 ### 04/03/2023 - 04/08/2023
 
