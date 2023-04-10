@@ -71,8 +71,47 @@ typedef vector<vi> vvi;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+/**
+Observations:
+1) a > b && parity is different, always optimal to swap
+2) relative positions of consecutive odds and evens can't change
+*/
 int main()
 {
     fastio;
+    ll t;
+    cin >> t;
+    string s;
+    while (t--)
+    {
+        cin >> s;
+        vi odds, evens;
+        for (auto &c : s)
+        {
+            int d = c - '0';
+            if (d % 2 == 1) odds.pb(d);
+            else evens.pb(d);
+        }
+
+        int i = 0, j = 0;
+        while (i < odds.size() && j < evens.size())
+        {
+            int a = odds[i], b = evens[j];
+            if (a <= b)
+            {
+                cout << a;
+                i++;
+            }
+            else
+            {
+                cout << b;
+                j++;
+            }
+        }
+
+        while (i < odds.size()) cout << odds[i++];
+        while (j < evens.size()) cout << evens[j++];
+        cout << endl;
+    }
     return 0;
 }
