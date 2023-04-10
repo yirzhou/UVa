@@ -14,6 +14,7 @@ My solutions to some CF problems.
 
 - [x] 343B (similar to bracket matching - find "++" or "--")
 - [x] 1294D
+- [x] 322B (such a weird one: only if `a % 3 == 0 && a >= 3 && b % 3 == 2 && c % 3 == 2` will we add 1)
 
 ### 04/03/2023 - 04/08/2023
 
