@@ -10,6 +10,18 @@ My solutions to some CF problems.
 
 ## Journal
 
+## 04/17/2023
+
+- [x] \*1622C
+
+## 04/16/2023
+
+Google coding competition farewell round.
+
+### 04/10/2023 - 04/15/2023
+
+Too busy with work
+
 ### 04/09/2023
 
 - [x] 343B (similar to bracket matching - find "++" or "--")
