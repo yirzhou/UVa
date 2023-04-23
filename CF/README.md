@@ -10,6 +10,10 @@ My solutions to some CF problems.
 
 ## Journal
 
+## 04/18/2023 - 04/21/2023
+
+- [x] \*1481C
+
 ## 04/17/2023
 
 - [x] \*1622C
