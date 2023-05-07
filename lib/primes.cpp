@@ -19,23 +19,55 @@ bitset<MAXN> bs;
 ll _sieve_size;
 vi primes;
 
-void sieve(ll upperbound) {
+void sieve(ll upperbound)
+{
     _sieve_size = upperbound + 1;
     bs.set();
     bs[0] = bs[1] = 0;
-    for (ll i = 2; i <= _sieve_size; ++i) {
-        if (bs[i]) {
+    for (ll i = 2; i <= _sieve_size; ++i)
+    {
+        if (bs[i])
+        {
             for (ll j = i * i; j <= _sieve_size; j += i) bs[j] = 0;
             primes.pb((int)i);
         }
     }
 }
 
-bool is_prime(ll n) {
+bool is_prime(ll n)
+{
     if (n <= _sieve_size) return bs[n];
-    for (int i = 0; i < primes.size(); ++i) {
+    for (int i = 0; i < primes.size(); ++i)
+    {
         if (primes[i] * primes[i] > n) return true;
         if (n % primes[i] == 0) return false;
     }
     return true;
+}
+
+void factor(int num, unordered_map<int, int> &f)
+{
+    ll idx = 0, pf = primes[idx];
+    while (pf * pf <= num)
+    {
+        ll power = 0;
+        while (num % pf == 0) num /= pf, power++;
+        if (power != 0) f[pf] += power;
+        pf = primes[++idx];
+    }
+    if (num != 1) f[num]++;
+}
+
+void factor(ll num, unordered_set<int> &factors)
+{
+    ll i = 2;
+    while (i <= sqrt(num))
+    {
+        if (num % i == 0)
+        {
+            factors.insert(i);
+            if (i != (num / i)) factors.insert(num / i);
+        }
+        i++;
+    }
 }
