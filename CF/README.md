@@ -13,6 +13,9 @@ My solutions to some CF problems.
 ## 05/07/2023
 
 - [x] 75C
+- [x] \*1217B
+- [x] 1539D
+- [x] 1213D
 
 ## 04/22/2023
 
