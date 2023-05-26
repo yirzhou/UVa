@@ -10,6 +10,11 @@ My solutions to some CF problems.
 
 ## Journal
 
+## 05/21/2023
+
+- [x] 1476C
+- [x] 601A (memory limit exceeded on BFS; use floyd-warshall instead)
+
 ## 05/07/2023
 
 - [x] 75C
