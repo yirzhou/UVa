@@ -58,16 +58,22 @@ void factor(int num, unordered_map<int, int> &f)
     if (num != 1) f[num]++;
 }
 
-void factor(ll num, unordered_set<int> &factors)
+void factor(ll num)
 {
-    ll i = 2;
-    while (i <= sqrt(num))
+    ll z = 2;
+
+    while (z * z <= num)
     {
-        if (num % i == 0)
+        if (num % z == 0)
         {
-            factors.insert(i);
-            if (i != (num / i)) factors.insert(num / i);
+            // TODO: do stuff with z
+            num /= z;
         }
-        i++;
+        else { z++; }
+    }
+
+    if (num > 1)
+    {
+        // TODO: do stuff with num
     }
 }

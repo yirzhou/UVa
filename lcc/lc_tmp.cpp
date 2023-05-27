@@ -19,11 +19,12 @@ using namespace std;
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
 
-typedef vector<int> vi;
-typedef pair<int, int> ii;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
+typedef pair<int, int> ii;
+typedef pair<ll, ll> llp;
+typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
