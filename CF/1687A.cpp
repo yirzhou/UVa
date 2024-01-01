@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define ALL(v) v.begin(), v.end()
@@ -60,6 +60,38 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+ll nums[200005];
+ll t, n, k;
+
+ll f1() {
+    ll extra = k * (k - 1) / 2, maxval = 0L, sum = 0L;
+    int i = 0, j = 0;
+    for (; j < n; ++j) {
+        ll num = nums[j];
+        sum += num;
+        if (j - i + 1 > k) { sum -= nums[i++]; }
+        maxval = max(maxval, sum);
+    }
+    return maxval + extra;
+}
+
+ll f2() {
+    ll ans = 0;
+    for (int i = 0; i < n; ++i) ans += nums[i];
+    ans += (k - n + k - 1) * n / 2;
+    return ans;
+}
+
+int main() {
+    fastio;
+
+    cin >> t;
+    while (t--) {
+        cin >> n >> k;
+        for (int i = 0; i < n; ++i) cin >> nums[i];
+        ll ans = k <= n ? f1() : f2();
+        cout << ans << endl;
+    }
+}

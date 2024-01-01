@@ -78,7 +78,7 @@ class FenwickTree {
     }
 
     void build(const vl &f) {
-        int m = (int)f.size() - 1;
+        ll m = (int)f.size() - 1;
         ft.assign(m + 1, 0);
         for (int i = 1; i <= m; ++i) {
             ft[i] += f[i];
@@ -86,22 +86,22 @@ class FenwickTree {
         }
     }
 
-    int rsq(int j) {
-        int sum = 0;
+    ll rsq(ll j) {
+        ll sum = 0;
         for (; j; j -= LSOne(j)) sum += ft[j];
         return sum;
     }
 
-    int rsq(int i, int j) { return rsq(j) - rsq(i - 1); }
+    ll rsq(ll i, ll j) { return rsq(j) - rsq(i - 1); }
 
-    void update(int i, int j) {
+    void update(ll i, ll j) {
         for (; i < (int)ft.size(); i += LSOne(i)) ft[i] += j;
     }
 
     int select(ll k) {
-        int lo = 1, hi = ft.size() - 1;
-        for (int i = 0; i < 30; ++i) {
-            int mid = (lo + hi) / 2;
+        ll lo = 1, hi = ft.size() - 1;
+        for (ll i = 0; i < 30; ++i) {
+            ll mid = (lo + hi) / 2;
             (rsq(1, mid) < k) ? lo = mid : hi = mid;
         }
         return hi;
@@ -114,12 +114,12 @@ class RUPQ {
 
   public:
     RUPQ(int m) : ft(FenwickTree(m)){};
-    void range_update(int ui, int uj, int v) {
+    void range_update(ll ui, ll uj, ll v) {
         ft.update(ui, v);
         ft.update(uj + 1, -v);
     }
 
-    ll point_query(int i) { return ft.rsq(i); }
+    ll point_query(ll i) { return ft.rsq(i); }
 };
 
 class RURQ {
@@ -130,13 +130,13 @@ class RURQ {
   public:
     RURQ(int m) : rupq(RUPQ(m)), purq(FenwickTree(m)) {}
 
-    void range_update(int ui, int uj, int v) {
+    void range_update(ll ui, ll uj, ll v) {
         rupq.range_update(ui, uj, v);
         purq.update(ui, v * (ui - 1));
         purq.update(uj + 1, -v * uj);
     }
 
-    ll rsq(int j) { return rupq.point_query(j) * j - purq.rsq(j); }
+    ll rsq(ll j) { return rupq.point_query(j) * j - purq.rsq(j); }
 
-    ll rsq(int i, int j) { return rsq(j) - rsq(i - 1); }
+    ll rsq(ll i, ll j) { return rsq(j) - rsq(i - 1); }
 };

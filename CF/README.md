@@ -10,6 +10,48 @@ My solutions to some CF problems.
 
 ## Journal
 
+## 07/30/2023
+
+- [x] 1321C (choose the max removable char each time)
+
+## 07/04/2023
+
+- [x] \*1512E (between k*(k+1)/2 and k*(2n-k+1)/2)
+
+## 07/02/2023
+
+- [ ] \*1175B (not finished - don't know where it went wrong)
+- [x] 1582D (b1 = -a3, b2 = -a3, b3 = a1 + a2 if a1 + a2 != 0)
+
+## 06/19/2023
+
+- [x] 1151B (over-complicated with digit DP which will probably also work)
+- [x] 763A
+- [x] \*1282B2 (greedy + dp: for the first `k-1` items we try to buy all of them as no promotion is possible; at the `k-1` item, this is where using one price for `k-1` items starts to apply.)
+
+## 06/18/2023
+
+- [x] \*1779C (fairly tricky to implement; multiset can be used as a heap; note that the first element doesn't need to be processed.)
+- [x] 1469C
+- [x] 559A
+
+## 06/17/2023
+
+- [x] 1730B
+- [x] 1593E
+
+## 06/11/2023
+
+- [x] 1702E
+
+## 06/03/2023
+
+- [x] 1753B (`cnt[num]` must be divided by `(num+1)`)
+
+## 05/29/2023
+
+- [x] \*1511D (euler tour)
+
 ## 05/21/2023
 
 - [x] 1476C

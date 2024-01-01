@@ -60,6 +60,33 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+int nums[200005];
 
-int main() { fastio; }
+int main()
+{
+    fastio;
+    int t, n;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        for (int i = 0; i < n; ++i) {
+            cin >> nums[i];
+        }
+        int i = 0;
+        if (n % 2 == 1) {
+            int a = nums[0], b = nums[1], c = nums[2];
+            if (a + b != 0)
+                cout << -c << " " << -c << " " << a + b << " ";
+            else if (a + c != 0)
+                cout << -b << " " << a + c << " " << -b << " ";
+            else
+                cout << b + c << " " << -a << " " << -a << " ";
+            i = 3;
+        }
+        for (; i < n; i += 2) {
+            cout << -nums[i + 1] << " " << nums[i] << (i + 2 < n ? " " : "");
+        }
+
+        cout << endl;
+    }
+}

@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define ALL(v) v.begin(), v.end()
@@ -60,6 +60,34 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ll t, n;
+ll nums[200005], pre[200005];
 
-int main() { fastio; }
+int main() {
+    fastio;
+    cin >> t;
+
+    while (t--) {
+        map<ll, int> mp;
+        cin >> n;
+        memset(pre, 0, sizeof pre);
+        int ans = 0;
+        for (int i = 0; i < n; ++i) {
+            cin >> nums[i];
+            pre[i + 1] = pre[i] + nums[i];
+        }
+
+        int maxn = 0;
+        for (int i = n; i >= 1; --i) {
+            mp[pre[i]]++;
+            maxn = max(maxn, mp[pre[i]]);
+            if (nums[i - 1] == 0) {
+                ans += maxn;
+                maxn = 0;
+                mp.clear();
+            }
+        }
+        ans += mp[0];
+        cout << ans << endl;
+    }
+}

@@ -30,12 +30,21 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
+
+#define oo INT_MAX
+#define UNVISITED -1
+#define INF 1000000000
+#define EPS 1e-9
+#define pb push_back
+#define fi first
+#define se second
+#define MOD 1000000007
 
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
@@ -60,6 +69,31 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+int main() {
+    fastio;
+    ll t, n, k;
+    cin >> t;
+    while (t--) {
+        cin >> n >> k;
+        vl nums(n);
+        for (int i = 0; i < n; ++i) cin >> nums[i];
+
+        ll l = nums[0], r = nums[0];
+        bool can = true;
+        for (int i = 1; i < n; ++i) {
+            ll h = nums[i];
+            ll nl = max(l - (k - 1), h), nr = min(r + (k - 1), h + (k - 1));
+            if (nl > nr) {
+                can = false;
+                break;
+            }
+            l = nl, r = nr;
+        }
+
+        if (nums.back() < l || nums.back() > r) can = false;
+
+        cout << (can ? "YES" : "NO") << endl;
+    }
+}

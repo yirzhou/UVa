@@ -37,6 +37,15 @@ using namespace std;
     cout << fixed;   \
     cout.precision(a)
 
+#define oo INT_MAX
+#define UNVISITED -1
+#define INF 1000000000
+#define EPS 1e-9
+#define pb push_back
+#define fi first
+#define se second
+#define MOD 1000000007
+
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
 #define piii(a, b, c) printf("%d %d %d\n", a, b, c)
@@ -60,6 +69,46 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+bool overflow = 0;
+ll MAX_VAL = (1L << 32) - 1;
+string order;
+int lines;
+int i = 0;
+ll num;
 
-int main() { fastio; }
+ll dfs()
+{
+    ll res = 0LL;
+
+    while (i++ < lines) {
+        cin >> order;
+        if (order[0] == 'a') {
+            if (!overflow)
+                res++;
+        } else if (order[0] == 'f') {
+            cin >> num;
+            if (!overflow)
+                res += num * dfs();
+            else
+                dfs();
+        } else {
+            break;
+        }
+        if (res > MAX_VAL)
+            overflow = 1;
+    }
+    if (res > MAX_VAL)
+        overflow = 1;
+    return res;
+}
+
+int main()
+{
+    fastio;
+    cin >> lines;
+    ll ans = dfs();
+    if (!overflow)
+        cout << ans << endl;
+    else
+        cout << "OVERFLOW!!!" << endl;
+}

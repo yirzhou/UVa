@@ -44,11 +44,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                                                                 \
-    ios_base::sync_with_stdio(false);                                          \
+#define fastio                        \
+    ios_base::sync_with_stdio(false); \
     cin.tie(0)
-#define precision(a)                                                           \
-    cout << fixed;                                                             \
+#define precision(a) \
+    cout << fixed;   \
     cout.precision(a)
 
 typedef vector<int> vi;
@@ -61,9 +61,10 @@ typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
 class Solution {
-  public:
+public:
     ll n;
-    int good(vi &nums, int m, int k, int val) {
+    int good(vi& nums, int m, int k, int val)
+    {
         int K = k;
         for (int i = 0; i < n; ++i) {
             if (nums[i] > val) {
@@ -71,21 +72,27 @@ class Solution {
                 continue;
             }
             k--;
-            if (k == 0) k = K, m--;
-            if (m == 0) break;
+            if (k == 0)
+                k = K, m--;
+            if (m == 0)
+                break;
         }
 
         return m == 0;
     }
-    int minDays(vector<int> &nums, int m, int k) {
+    int minDays(vector<int>& nums, int m, int k)
+    {
         n = nums.size();
-        if (n < (ll)m * (ll)k) return -1;
+        if (n < (ll)m * (ll)k)
+            return -1;
 
         int lo = 1, hi = 1e9 + 1;
         while (lo < hi) {
             int mid = lo + (hi - lo) / 2;
-            if (good(nums, m, k, mid)) hi = mid;
-            else lo = mid + 1;
+            if (good(nums, m, k, mid))
+                hi = mid;
+            else
+                lo = mid + 1;
         }
         return lo;
     }

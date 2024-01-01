@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define ALL(v) v.begin(), v.end()
@@ -60,6 +60,36 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+int f(vvi &arr, int x) {
+    int n = arr.size(), i = 0;
+    for (int j = 0; j < n; ++j) {
+        int a = arr[j][1], b = arr[j][2];
+        if (x - 1 - a <= i && i <= b) { i++; }
+    }
+    return i >= x;
+}
+
+int main() {
+    fastio;
+    int t, n, a, b;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        vvi vec(n);
+        for (int i = 1; i <= n; ++i) {
+            cin >> a >> b;
+            vec[i - 1] = {i, a, b};
+        }
+
+        int lo = 0, hi = n + 1, mid;
+        while (lo < hi) {
+            mid = lo + (hi - lo) / 2;
+            if (f(vec, mid)) lo = mid + 1;
+            else hi = mid;
+        }
+
+        cout << lo - 1 << endl;
+    }
+}

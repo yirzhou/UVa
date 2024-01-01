@@ -30,12 +30,21 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
+
+#define oo INT_MAX
+#define UNVISITED -1
+#define INF 1000000000
+#define EPS 1e-9
+#define pb push_back
+#define fi first
+#define se second
+#define MOD 1000000007
 
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
@@ -60,6 +69,26 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+ll nums[200005];
+ll t, n, p, k;
+
+int main() {
+    fastio;
+    cin >> t;
+    while (t--) {
+        cin >> n >> p >> k;
+        for (int i = 0; i < n; ++i) cin >> nums[i];
+        sort(nums, nums + n);
+        ll dp[200005] = {0};
+        for (int i = 0; i < k - 1; ++i) dp[i] = (i ? dp[i - 1] : 0) + nums[i];
+        dp[k - 1] = nums[k - 1];
+        for (int i = k; i < n; ++i) { dp[i] = dp[i - k] + nums[i]; }
+        ll ans = -1;
+        for (int i = 0; i < n; ++i) {
+            if (dp[i] <= p) ans = i;
+        }
+        cout << ans + 1 << endl;
+    }
+}

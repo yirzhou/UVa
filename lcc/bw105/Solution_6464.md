@@ -1,9 +1,9 @@
-# Problem
+# Intuition
 
-The problem can be reduced to:
+The problem can be rephrased to:
 Given an array from which we _can_ construct a graph. In this graph, there's an edge between two nodes (indices `i` and `j`) iff `nums[i]` and `nums[j]` is not coprime. Is this graph connected?
 
-# Main idea
+# Idea
 
 We can use the disjoint-set union (aka. union-find algorithm) to solve this problem. For every index `i` and its number `nums[i]`, we perform prime factorization. For every prime factor `z` of `nums[i]`, we connect `i` to _any_ other index `j` where `nums[j]`'s prime factors also include `z`. We use a map `unordered_map<int, vector<int>>` to keep track of this information of which each key is a prime factor of some number we've seen and its value is a list of indices where the numbers positioned at them have such prime factor.
 
@@ -26,11 +26,15 @@ class UF
         for (int i = 0; i < n; ++i) { parent[i] = i; }
     }
 
+    // Find parent/root of the node x.
+    // With path compression.
     int find(int x)
     {
         if (x != parent[x]) parent[x] = find(parent[x]);
         return parent[x];
     }
+
+    // Connect p to q.
     void connect(int p, int q)
     {
         int rootp = find(p), rootq = find(q);

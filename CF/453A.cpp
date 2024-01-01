@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define ALL(v) v.begin(), v.end()
@@ -60,6 +60,17 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+int main() {
+    fastio;
+    precision(12);
+    int m, n;
+    cin >> m >> n;
+    double ans = 0.0;
+    for (int i = 1; i <= m; ++i) {
+        ans += pow(((double)i / m), n) * i - pow(((double)i - 1) / m, n) * i;
+    }
+
+    cout << ans << endl;
+}

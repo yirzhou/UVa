@@ -30,12 +30,21 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                                                         \
+    ios_base::sync_with_stdio(false);                                                                                  \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                                                                   \
+    cout << fixed;                                                                                                     \
     cout.precision(a)
+
+#define oo INT_MAX
+#define UNVISITED -1
+#define INF 1000000000
+#define EPS 1e-9
+#define pb push_back
+#define fi first
+#define se second
+#define MOD 1000000007
 
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
@@ -60,6 +69,34 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-int main() { fastio; }
+const int maxn = 5000000;
+
+int A[maxn + 5] = {0}, cnt[maxn + 5] = {0};
+
+int main()
+{
+    fastio;
+    ll n, x;
+    cin >> n >> x;
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> A[i];
+        cnt[A[i]]++;
+    }
+
+    for (int num = 1; num < x; ++num)
+    {
+        if (cnt[num] % (num + 1) != 0)
+        {
+            cout << "No" << endl;
+            return 0;
+        }
+        cnt[num + 1] += (cnt[num] / (num + 1));
+    }
+
+    cout << "Yes" << endl;
+
+    return 0;
+}

@@ -37,6 +37,15 @@ using namespace std;
     cout << fixed;   \
     cout.precision(a)
 
+#define oo INT_MAX
+#define UNVISITED -1
+#define INF 1000000000
+#define EPS 1e-9
+#define pb push_back
+#define fi first
+#define se second
+#define MOD 1000000007
+
 #define ALL(v) v.begin(), v.end()
 #define pii(a, b) printf("%d %d\n", a, b)
 #define piii(a, b, c) printf("%d %d %d\n", a, b, c)
@@ -62,4 +71,58 @@ typedef vector<vi> vvi;
 
 ii D[] = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 
-int main() { fastio; }
+/**
+aa, ab, ac, ad, ...
+ba, bb, bc, bd, ...
+...
+za, zb, zc, zd, ...
+
+Eulerian cycle - such a genius way.
+*/
+
+vvi AL;
+vi hierholzer(int n, int s)
+{
+    vi ans, idx(n, 0), st;
+
+    st.pb(s);
+    while (!st.empty()) {
+        int u = st.back();
+        if (idx[u] < (int)AL[u].size()) {
+            st.pb(AL[u][idx[u]]);
+            ++idx[u];
+        } else {
+            ans.pb(u);
+            st.pop_back();
+        }
+    }
+    reverse(ALL(ans));
+    return ans;
+}
+
+int main()
+{
+    fastio;
+
+    int n, k;
+    cin >> n >> k;
+    AL.assign(k, vi());
+    for (int u = 0; u < k; ++u) {
+        for (int v = 0; v < k; ++v) {
+            AL[u].pb(v);
+        }
+    }
+
+    vi tour = hierholzer(k, 0);
+    string ans;
+    for (int i = 0; i < tour.size() && ans.size() < n; ++i) {
+        ans.pb(tour[i] + 'a');
+    }
+    for (int i = tour.size() - k * k; ans.size() < n; i++) {
+        if (i == tour.size())
+            i = tour.size() - k * k;
+        ans.pb('a' + tour[i]);
+    }
+
+    cout << ans << endl;
+}
