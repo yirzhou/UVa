@@ -79,7 +79,6 @@ ll num;
 ll dfs()
 {
     ll res = 0LL;
-
     while (i++ < lines) {
         cin >> order;
         if (order[0] == 'a') {

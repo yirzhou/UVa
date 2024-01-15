@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                                                                                                         \
-    ios_base::sync_with_stdio(false);                                                                                  \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a)                                                                                                   \
-    cout << fixed;                                                                                                     \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define oo INT_MAX
@@ -69,8 +69,7 @@ typedef vector<ll> vl;
 typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
-int main()
-{
+int main() {
     fastio;
     ll n, k;
     cin >> n >> k;
@@ -79,20 +78,19 @@ int main()
     sort(ALL(nums));
     ll ans = INT_MAX;
     unordered_map<ll, vl> mp;
-    for (auto &num : nums)
-    {
-        for (ll i = 0; i <= 18; ++i)
-        {
+    for (auto &num : nums) {
+        for (ll i = 0; i <= 18; ++i) {
             ll num2 = num >> i;
-
-            if (mp.count(num2) && mp[num2][0] < k) { mp[num2][0]++, mp[num2][1] += i; }
-            else if (!mp.count(num2)) { mp[num2] = {1, i}; }
+            if (mp.count(num2) && mp[num2][0] < k) {
+                mp[num2][0]++, mp[num2][1] += i;
+            } else if (!mp.count(num2)) {
+                mp[num2] = {1, i};
+            }
             if (num2 == 0) break;
         }
     }
 
-    for (auto &[num, freq] : mp)
-    {
+    for (auto &[num, freq] : mp) {
         ll cnt = freq[0], divs = freq[1];
         if (cnt == k) ans = min(ans, divs);
     }
