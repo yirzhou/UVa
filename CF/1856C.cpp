@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -36,5 +37,48 @@ typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
 ii D[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+vi nums;
+int t, n, k;
 
-int main() { fastio; }
+ll f(int i, int y) {
+    if (nums[i] >= y) {
+        return 0L;
+    }
+    if (i == n - 1 && nums[i] < y) {
+        return INF;
+    }
+    return y - nums[i] + f(i + 1, y - 1);
+}
+
+bool can(int y) {
+    for (int i = 0; i < n; ++i) {
+        if (f(i, y) <= k) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() {
+    fastio;
+    cin >> t;
+    while (t--) {
+        cin >> n >> k;
+        int l = 0, r = 0;
+        nums.assign(n, 0);
+        for (int i = 0; i < n; ++i) {
+            cin >> nums[i];
+            r = max(r, nums[i]);
+        }
+        r += k + 1;
+        while (l < r) {
+            int m = l + ((r - l) >> 1);
+            if (can(m)) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
+        }
+        cout << l - 1 << endl;
+    }
+}
