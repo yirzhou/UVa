@@ -30,11 +30,11 @@ using namespace std;
 #define si(a) scanf("%d", &a)
 #define sii(a, b) scanf("%d%d", &a, &b)
 #define siii(a, b, c) scanf("%d%d%d", &a, &b, &c)
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                 \
+    ios_base::sync_with_stdio(false);                                          \
     cin.tie(0)
-#define precision(a) \
-    cout << fixed;   \
+#define precision(a)                                                           \
+    cout << fixed;                                                             \
     cout.precision(a)
 
 #define oo INT_MAX
@@ -70,44 +70,54 @@ typedef vector<vl> vvl;
 typedef vector<vi> vvi;
 
 bool overflow = 0;
-ll MAX_VAL = (1L << 32) - 1;
-string order;
-int lines;
-int i = 0;
-ll num;
+ll MAX_VAL = (1LL << 32) - 1;
+int n;
+int idx = 0;
 
-ll dfs()
-{
-    ll res = 0LL;
-    while (i++ < lines) {
-        cin >> order;
-        if (order[0] == 'a') {
-            if (!overflow)
-                res++;
-        } else if (order[0] == 'f') {
-            cin >> num;
-            if (!overflow)
-                res += num * dfs();
-            else
-                dfs();
+vector<pair<string, ll>> vec;
+
+ll dfs() {
+    ll ans = 0LL;
+    while (idx < n) {
+        pair<string, ll> p = vec[idx++];
+        string s = p.fi;
+        ll mult = p.se;
+        if ('a' == s[0]) {
+            // ADD
+            ans++;
+        } else if ('f' == s[0]) {
+            // FOR
+            ans += mult * dfs();
         } else {
+            // END
             break;
         }
-        if (res > MAX_VAL)
-            overflow = 1;
+        if (ans > (1LL << 32) - 1) {
+            overflow = true;
+            return ans;
+        }
     }
-    if (res > MAX_VAL)
-        overflow = 1;
-    return res;
+    return ans;
 }
 
-int main()
-{
+int main() {
     fastio;
-    cin >> lines;
+    cin >> n;
+    idx = 0;
+    vec.assign(n, make_pair<>("", 0ll));
+    string s;
+    for (int i = 0; i < n; ++i) {
+        cin >> vec[i].fi;
+        if ('f' == vec[i].fi[0]) {
+            cin >> vec[i].se;
+        }
+    }
+
     ll ans = dfs();
-    if (!overflow)
-        cout << ans << endl;
-    else
-        cout << "OVERFLOW!!!" << endl;
+    if (overflow) {
+        cout << "OVERFLOW!!!";
+    } else {
+        cout << ans;
+    }
+    cout << endl;
 }
